@@ -1,0 +1,49 @@
+<!--
+ Copyright (c) 2014, 2016, Oracle and/or its affiliates.
+ The Universal Permissive License (UPL), Version 1.0
+ -->
+<div class="oj-hybrid-padding">
+  <h3>Power Rankings</h3>
+
+  <div class="oj-flex" style="flex-wrap: nowrap">
+    <div class="oj-sm-2 oj-flex-item">
+      <span class="table-heading">Rank</span>
+    </div>
+    <div class="oj-sm-6 oj-flex-item">
+      <span class="table-heading">Team</span>
+    </div>
+    <div class="oj-sm-4 oj-flex-item">
+      <span class="table-heading">Rating</span>
+    </div>
+
+
+
+
+
+  </div>
+  <ul id="listview" aria-label="list using collection" style="height:100%" data-bind="ojComponent: {component: 'ojListView', data: dataSource, item: {template: 'standings_template'}, selectionMode: 'single', rootAttributes: {}}">
+
+
+
+
+  </ul>
+
+  <script type="text/html" id="standings_template">
+    <li data-bind="attr: {id: team}">
+      <div class="oj-flex" style="flex-wrap: nowrap">
+        <div class="oj-sm-2 oj-flex-item">
+          <span data-bind="text: $itemContext.index + 1" />
+        </div>
+        <div class="oj-sm-6 oj-flex-item">
+          <a data-bind="text: team, click: $parent.navigate" />
+        </div>
+
+        <div class="oj-sm-4 oj-flex-item">
+          <span data-bind="text: rating" />
+        </div>
+
+      </div>
+    </li>
+  </script>
+
+</div>

@@ -1,0 +1,34 @@
+@import "oj.utilities";
+
+game-list:not(.oj-complete) {
+  visibility: hidden;
+}
+
+game-list {
+  .table-heading {
+    font-weight: bold;
+    text-align: center;
+    font-size: 1.25em;
+  }
+
+  .table-title {
+    text-align: center;
+    padding-top: 1.5em;
+    padding-bottom: 1em;
+    font-size: 2em;
+  }
+
+  .table-data {
+    text-align: center;
+  }
+  @media screen and (max-width: 415px ) {
+    .table-data {
+      font-size: 1em;
+    }
+  }
+  @media screen and (min-width: 416px) {
+    .table-data {
+      font-size: 1.25em;
+    }
+  }
+}

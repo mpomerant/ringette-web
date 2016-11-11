@@ -1,0 +1,33 @@
+@import "oj.utilities";
+
+team-list:not(.oj-complete) {
+  visibility: hidden;
+}
+
+team-list {
+  .team-panel {
+    border: solid;
+    border-width: 1px;
+    border-radius: 10px;
+  }
+
+  .team-panel-text {
+    font-size: 1.25em;
+    text-align: center;
+    margin-bottom: 0.5em;
+  }
+
+  .team-panel-header {
+    text-align: center;
+    background-color: blue;
+    font-size: 2em;
+    border-radius: 10px 10px 0 0;
+    overflow: hidden;
+    color: white;
+    margin-bottom: 0.75em;
+  }
+
+  .team-layout {
+    width: 100%;
+  }
+}

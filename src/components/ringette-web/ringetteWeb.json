@@ -1,0 +1,30 @@
+{
+  "properties": {
+    "name": {
+      "description": "The name to display",
+      "type": "string"
+    }
+  },
+  "methods": {
+    "changeColor": {
+      "description": "Initiates a colour change on the component",
+      "params": [{
+        "name": "colour",
+        "description": "The new colour to be applied.  Pick a random color if none provided.",
+        "type": "string"
+      }]
+    }
+  },
+  "events": {
+    "messageClicked": {
+      "description": "Triggered when the message has been clicked by the user",
+      "bubbles": true,
+      "detail": {
+        "value": {
+          "description": "The time that the message was clicked at",
+          "type": "string"
+        }
+      }
+    }
+  }
+}

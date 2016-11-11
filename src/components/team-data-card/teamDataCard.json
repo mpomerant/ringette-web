@@ -1,0 +1,13 @@
+{
+  "properties": {
+    "title": {
+      "description": "The name to display",
+      "type": "string"
+    },
+    "stat": {
+      "description": "The name to display",
+      "type": "string"
+    }
+  }
+
+}

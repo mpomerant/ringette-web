@@ -1,0 +1,13 @@
+@import "oj.utilities";
+
+ringette-web:not(.oj-complete) {
+  visibility: hidden;
+}
+
+ringette-web {
+  h1 {
+    background-color: blue;
+    border: solid;
+    border-width: 3px;
+  }
+}

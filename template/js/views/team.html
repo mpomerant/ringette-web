@@ -1,0 +1,53 @@
+<!--
+ Copyright (c) 2014, 2016, Oracle and/or its affiliates.
+ The Universal Permissive License (UPL), Version 1.0
+ -->
+<div class="oj-hybrid-padding">
+  <team-hero team-name={{teamName}} data={{data}}></team-hero>
+  <!--ko if: loaded -->
+  <div class="panel">
+    <div id="lineChart" data-bind="ojComponent: {
+             component: 'ojChart',
+             title: {
+                 text: 'Power Rankings',
+                 halign: 'plotAreaCenter',
+                 style: 'font-size: 2em;'
+             },
+             type: 'line',
+             legend: {
+                 rendered: 'off'
+             },
+             series: lineSeriesValue,
+             groups: lineGroupsValue,
+             animationOnDisplay: 'auto',
+             animationOnDataChange: 'auto',
+             orientation: 'vertical',
+             hoverBehavior: 'dim',
+             yAxis : {
+                 max: 1700,
+                 min: 1300,
+                 tickLabel : {
+                    scaling : 'none'
+                 }
+             }
+             }" style="width:100%;height:350px;">
+    </div>
+  </div>
+
+
+  <div class="panel">
+    <game-list title="Regular Season" data={{regularSeason}}></game-list>
+  </div>
+  <!-- /ko -->
+
+  <!--ko if: loaded -->
+  <div class="panel">
+    <game-list title="Tournament" data={{tournament}}></game-list>
+  </div>
+  <!-- /ko -->
+
+
+</div>
+
+
+</div>

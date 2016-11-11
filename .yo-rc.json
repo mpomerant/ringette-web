@@ -1,0 +1,8 @@
+{
+  "generator-oj-component": {
+    "componentName": "ringette-web",
+    "prefix": "ringette",
+    "name": "web",
+    "selectedComponents": []
+  }
+}

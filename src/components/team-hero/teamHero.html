@@ -1,0 +1,74 @@
+<div class="hero oj-panel oj-flex oj-margin oj-sm-justify-content-center">
+  <div class="oj-flex-item">
+    <div class="oj-flex">
+      <div class="hero-container oj-flex-item">
+        <span class="hero-title" data-bind="text: $props.teamName">Name</span>
+      </div>
+    </div>
+    <div class="oj-flex oj-sm-justify-content-space-between ">
+      <div class=" hero-stats  oj-flex-item oj-sm-12 oj-md-6">
+        <span class="hero-stat-title">Regular Season</span>
+        <!-- ko with: $props.data.regularSeasonRecord -->
+
+
+        <div class="oj-flex oj-flex-items-pad">
+          <div class="oj-flex-item oj-sm-6">
+            <team-data-card title='Record' stat={{record}}></team-data-card>
+
+
+          </div>
+          <div class="oj-flex-item oj-sm-6">
+            <team-data-card title='Win %' stat={{pct}}></team-data-card>
+
+          </div>
+        </div>
+        <div class="oj-flex oj-flex-items-pad">
+          <div class="oj-flex-item oj-sm-6">
+            <team-data-card title='Goals For' stat={{$data.for}}></team-data-card>
+
+
+          </div>
+          <div class="oj-flex-item oj-sm-6">
+            <team-data-card title='Goals Against' stat={{against}}></team-data-card>
+
+          </div>
+        </div>
+        <!-- /ko -->
+      </div>
+      <div class="hero-container hero-stats oj-flex-item oj-sm-12 oj-md-6">
+        <span class="hero-stat-title">Tournament</span>
+        <!-- ko with: $props.data.tournamentRecord -->
+
+
+        <div class="oj-flex oj-flex-items-pad">
+          <div class="oj-flex-item oj-sm-6">
+            <team-data-card title='Record' stat={{$data.record}}></team-data-card>
+
+
+          </div>
+          <div class="oj-flex-item oj-sm-6">
+            <team-data-card title='Win %' stat={{$data.pct}}></team-data-card>
+
+          </div>
+        </div>
+        <div class="oj-flex oj-flex-items-pad">
+          <div class="oj-flex-item oj-sm-6">
+            <team-data-card title='Goals For' stat={{$data.for}}></team-data-card>
+
+
+          </div>
+          <div class="oj-flex-item oj-sm-6">
+            <team-data-card title='Goals Against' stat={{$data.against}}></team-data-card>
+
+          </div>
+        </div>
+        <!-- /ko -->
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+</div>

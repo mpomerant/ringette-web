@@ -1,0 +1,339 @@
+//__________________________________________________________//
+//____________________BUILDSCRIPT AREA _____________________//
+// Putting items in the buildscript closure ensures that the
+// dependencies are available for use within the gradle build
+// itself. Not the output program.
+buildscript {
+
+    repositories {
+        maven {url "http://cgbu-nexus-dev.us.oracle.com:8081/nexus/content/groups/public/"}
+        maven {url "https://plugins.gradle.org/m2/"}
+        maven {url "http://repo.spring.io/plugins-release"}
+    }
+    dependencies {
+        classpath("org.springframework.build.gradle:propdeps-plugin:0.0.7") // this enables optional dependencies
+        classpath("org.ajoberstar:grgit:1.1.0")
+        classpath("se.transmode.gradle:gradle-docker:1.2")
+
+        // the following dependency exposes the maven settings file configuration to this gradle project
+       classpath("net.linguica.gradle:maven-settings-plugin:0.5")
+       classpath("org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.1-rc3")
+
+    }
+}
+
+
+
+plugins {
+    id "com.moowork.node" version "0.13"
+    id "org.sonarqube" version "2.1-rc3"
+}
+
+apply plugin: "docker"
+
+description = "Build the frontend project"
+
+defaultTasks 'ojetOverlay'
+
+repositories {
+    maven {
+        url "http://cgbu-nexus-dev.us.oracle.com:8081/nexus/content/groups/public/"
+//        url "http://artifactory-slc.oraclecorp.com/artifactory/ojet-release-local/"
+    }
+}
+
+node {
+    // Version of node to use.
+    version = '6.7.0'
+
+    // Version of npm to use.
+    npmVersion = '3.10.8'
+
+    // Base URL for fetching node distributions (change if you have a mirror).
+    distBaseUrl = 'https://nodejs.org/dist'
+
+    // If true, it will download node using above parameters.
+    // If false, it will try to use globally installed node.
+    download = true
+
+    // Set the work directory for unpacking node
+    workDir = file("${project.buildDir}/nodejs")
+
+    // Set the work directory where node_modules should be located
+    nodeModulesDir = file("${project.projectDir}")
+}
+
+configurations {
+    ojet
+}
+
+dependencies {
+    ojet (group: 'com.oracle.oraclejet', name: 'oraclejet', version: '2.2.0-29379')
+}
+
+task ojetOverlay(type: Copy) {
+    description "Extract OJET"
+
+    from zipTree(configurations.ojet.singleFile)
+    into "$projectDir/web/"
+}
+//ojetOverlay.dependsOn(npm_install)
+
+//__________________________________________________________//
+//_______________VERSION INFO AREA _________________________//
+ext {
+
+    revision = getGitRevision();
+    buildNum = (System.getenv("BUILD_NUMBER") != null) ? System.getenv("BUILD_NUMBER") : 1
+    dockerRegistryURL = System.properties['docker.registry.host.url']
+    dockerRegistryLogin = System.properties['docker.registry.login']
+    dockerRegistryPassword = System.properties['docker.registry.password']
+    dockerLoginVersion = System.properties['docker.gradle.login.version']
+    dockerApplicationTestName = "amplify/ui-component/ringette-web/cucumber"
+    dockerApplicationName = "amplify/ui-component/ringette-web/test"
+    dockerApplicationWebName = "amplify/ui-component/ringette-web"
+    skipLogin = System.properties['docker.registry.login.skip'].toBoolean()
+}
+
+group 'com.oracle.communications.amplify'
+version = buildNum + "-" + revision[0..11]
+println "Setting version number to ${version}"
+
+
+
+def getGitRevision() {
+    String revision = Long.toString(System.currentTimeMillis());
+    try {
+        git = org.ajoberstar.grgit.Grgit.open(file('.'))
+        revision = git.head().id
+    } catch (all){
+        println "No git repo defined yet"
+    }
+
+    return revision;
+}
+//__________________________________________________________//
+//_____________ DOCKER TASK CONFIG AREA ___________________//
+
+def ByteArrayOutputStream getDockerVersion() {
+    def dockerVersion = new ByteArrayOutputStream()
+    exec {
+        executable 'docker'
+        args 'version', '--format', '{{.Server.Version}}'
+        standardOutput = dockerVersion
+    }
+    println "Docker Version: ${dockerVersion}"
+    return dockerVersion
+}
+
+
+task buildDocker(type: Docker) {
+    group 'com.oracle.communications.amplify'
+    registry = dockerRegistryURL
+    applicationName = dockerApplicationName
+    tagVersion = "latest"
+    dockerfile = file("Dockerfile")
+    doFirst {
+       copy {
+          from '.'
+          into stageDir
+        }
+        if (dockerVersion.toString() > dockerLoginVersion) {
+            exec {
+                executable 'docker'
+                args 'login', '-u', dockerRegistryLogin, '-p', dockerRegistryPassword, dockerRegistryURL
+            }
+        }
+
+    }
+    doLast {
+        if (dockerVersion.toString() > dockerLoginVersion) {
+            exec {
+                executable 'docker'
+                args 'logout', dockerRegistryURL
+            }
+        }
+    }
+
+}
+//__________________________________________________________//
+//__________ DOCKER PUBLISH IMAGE CONFIG AREA ___________//
+task publishImage(dependsOn: buildDocker) {
+
+
+    String applicationName = dockerApplicationName
+
+    doFirst {
+        if ((getDockerVersion().toString() > dockerLoginVersion)
+                && !skipLogin) {
+            exec {
+                executable 'docker'
+                args 'login', '-u', dockerRegistryLogin, '-p', dockerRegistryPassword, dockerRegistryURL
+            }
+        }
+
+        String buildLatestImageTagName = "${dockerRegistryURL}/${applicationName}:latest"
+        String buildSpecificImageTagName = "${dockerRegistryURL}/${applicationName}:${version}"
+
+        exec {
+            executable 'docker'
+            args 'tag', buildLatestImageTagName, buildSpecificImageTagName
+        }
+        // publish with latest tag
+        exec {
+            executable 'docker'
+            args 'push', buildLatestImageTagName
+        }
+        // publish with release tag
+        exec {
+            executable 'docker'
+            args 'push', buildSpecificImageTagName
+        }
+    }
+    doLast {
+        if ((getDockerVersion().toString() > dockerLoginVersion)
+                && !skipLogin) {
+            exec {
+                executable 'docker'
+                args 'logout', dockerRegistryURL
+            }
+        }
+    }
+}
+
+
+task buildAcceptanceTestDocker(type: Docker) {
+    group 'com.oracle.communications.amplify'
+
+
+    registry = dockerRegistryURL
+    applicationName = dockerApplicationTestName
+    tagVersion = "latest"
+    dockerfile = file("test/cucumber/Dockerfile")
+    doFirst {
+       copy {
+          from '.'
+          into stageDir
+        }
+        if (dockerVersion.toString() > dockerLoginVersion) {
+            exec {
+                executable 'docker'
+                args 'login', '-u', dockerRegistryLogin, '-p', dockerRegistryPassword, dockerRegistryURL
+            }
+        }
+
+    }
+    doLast {
+        if (dockerVersion.toString() > dockerLoginVersion) {
+            exec {
+                executable 'docker'
+                args 'logout', dockerRegistryURL
+            }
+        }
+    }
+
+}
+task buildWebDocker(type: Docker) {
+    group 'com.oracle.communications.amplify'
+
+
+    registry = dockerRegistryURL
+    applicationName = dockerApplicationWebName
+    tagVersion = "latest"
+    dockerfile = file("test/cucumber/Dockerfile_web")
+    doFirst {
+       copy {
+          from '.'
+          into stageDir
+        }
+        if (dockerVersion.toString() > dockerLoginVersion) {
+            exec {
+                executable 'docker'
+                args 'login', '-u', dockerRegistryLogin, '-p', dockerRegistryPassword, dockerRegistryURL
+            }
+        }
+
+    }
+    doLast {
+        if (dockerVersion.toString() > dockerLoginVersion) {
+            exec {
+                executable 'docker'
+                args 'logout', dockerRegistryURL
+            }
+        }
+    }
+
+}
+
+task publishTestImage(dependsOn: buildAcceptanceTestDocker) {
+
+    String applicationName = dockerApplicationTestName
+
+    doFirst {
+        if ((getDockerVersion().toString() > dockerLoginVersion)
+                && !skipLogin) {
+            exec {
+                executable 'docker'
+                args 'login', '-u', dockerRegistryLogin, '-p', dockerRegistryPassword, dockerRegistryURL
+            }
+        }
+
+        String buildLatestImageTagName = "${dockerRegistryURL}/${applicationName}:latest"
+        String buildSpecificImageTagName = "${dockerRegistryURL}/${applicationName}:${version}"
+
+        exec {
+            executable 'docker'
+            args 'tag', buildLatestImageTagName, buildSpecificImageTagName
+        }
+        // publish with latest tag
+        exec {
+            executable 'docker'
+            args 'push', buildLatestImageTagName
+        }
+        // publish with release tag
+        exec {
+            executable 'docker'
+            args 'push', buildSpecificImageTagName
+        }
+    }
+    doLast {
+        if ((getDockerVersion().toString() > dockerLoginVersion)
+                && !skipLogin) {
+            exec {
+                executable 'docker'
+                args 'logout', dockerRegistryURL
+            }
+        }
+    }
+}
+
+task cleanDocker(type: Delete) {
+  delete 'build'
+}
+
+
+
+buildAcceptanceTestDocker.dependsOn(cleanDocker);
+buildAcceptanceTestDocker.mustRunAfter(cleanDocker);
+buildAcceptanceTestDocker.mustRunAfter(ojetOverlay);
+
+buildDocker.dependsOn(cleanDocker);
+buildDocker.mustRunAfter(cleanDocker);
+buildDocker.mustRunAfter(ojetOverlay);
+
+buildWebDocker.dependsOn(cleanDocker);
+buildWebDocker.mustRunAfter(cleanDocker);
+buildWebDocker.mustRunAfter(ojetOverlay);
+
+
+sonarqube {
+  properties {
+//    property "sonar.verbose", "true"
+    property "sonar.language", "js"
+    property "sonar.javascript.lcov.reportPath", "reports/lcov.info"
+    property "sonar.sources", "src"
+    property "sonar.tests", "test"
+    property "sonar.genericcoverage.unitTestReportPaths", "reports/junit/ut_report.xml"
+  property "sonar.exclusions", "src/**/loader.js"
+  }
+}

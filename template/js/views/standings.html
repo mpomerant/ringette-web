@@ -1,0 +1,78 @@
+<!--
+ Copyright (c) 2014, 2016, Oracle and/or its affiliates.
+ The Universal Permissive License (UPL), Version 1.0
+ -->
+<div class="oj-hybrid-padding">
+  <h3>Standings</h3>
+
+  <div class="oj-flex" style="flex-wrap: nowrap">
+    <div class="oj-sm-3 oj-md-3 oj-flex-item">
+      <span class="table-heading">Team</span>
+    </div>
+    <div class="oj-sm-only-hide oj-md-3 oj-flex-item">
+      <span class="table-heading">Association</span>
+    </div>
+
+    <div class="oj-sm-2 oj-md-1 oj-flex-item">
+      <span class="table-heading">Games</span>
+    </div>
+
+    <div class="oj-sm-2 oj-md-2 oj-flex-item">
+      <span class="table-heading">Record</span>
+    </div>
+
+
+    <div class="oj-sm-2 oj-md-1 oj-flex-item">
+      <span class="table-heading">Points</span>
+    </div>
+
+    <div class="oj-sm-2 oj-md-2 oj-flex-item">
+      <span class="table-heading">Win %</span>
+    </div>
+
+
+
+  </div>
+  <ul id="listview" aria-label="list using collection" style="height:100%" data-bind="ojComponent: {component: 'ojListView', data: dataSource, item: {template: 'standings_template'}, selectionMode: 'single', rootAttributes: {}}">
+
+
+
+
+  </ul>
+
+  <script type="text/html" id="standings_template">
+    <li data-bind="attr: {id: team}">
+      <div class="oj-flex" style="flex-wrap: nowrap">
+        <div class="oj-sm-3 oj-md-3 oj-flex-item">
+          <a data-bind="text: team, click: $parent.navigate" />
+        </div>
+        <div class="oj-sm-only-hide oj-md-3 oj-flex-item">
+          <span data-bind="text: association" />
+        </div>
+
+        <!-- ko with: qualifying -->
+        <div class="oj-sm-2 oj-md-1 oj-flex-item">
+          <span data-bind="text: games" />
+        </div>
+        <!-- /ko -->
+        <div class="oj-sm-2 oj-md-2 oj-flex-item">
+          <span data-bind="text: qualifyingRecord" />
+        </div>
+
+        <!-- ko with: qualifying -->
+        <div class="oj-sm-2 oj-md-1 oj-flex-item">
+          <span data-bind="text: points" />
+        </div>
+
+        <div class="oj-sm-2 oj-md-2  oj-flex-item">
+          <span data-bind="text: winPct" />
+        </div>
+
+
+        <!-- /ko -->
+
+      </div>
+    </li>
+  </script>
+
+</div>

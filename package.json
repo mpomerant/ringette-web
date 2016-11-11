@@ -1,0 +1,68 @@
+{
+  "name": "web-app",
+  "version": "1.0.0",
+  "description": "A test harness to serve and validate the web component",
+  "author": {
+    "name": "Oracle AMPLIFY Team"
+  },
+  "dependencies": {
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-changed": "^1.3.2",
+    "gulp-connect": "^5.0.0",
+    "gulp-connect-proxy": "^0.3.1",
+    "gulp-eslint": "^3.0.1",
+    "gulp-eslint-if-fixed": "^1.0.0",
+    "gulp-git": "^1.11.3",
+    "gulp-header": "^1.8.8",
+    "gulp-requirejs-optimize": "^1.2.0",
+    "gulp-sass": "^2.3.2",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-watch": "^4.3.9",
+    "http-proxy-middleware": "^0.17.2",
+    "jasmine": "^2.5.2",
+    "karma": "^1.3.0",
+    "karma-chrome-launcher": "^2.0.0",
+    "karma-coverage": "^1.1.1",
+    "karma-es6-shim": "^1.0.0",
+    "karma-jasmine": "^1.0.2",
+    "karma-phantomjs-launcher": "^1.0.2",
+    "karma-requirejs": "^1.1.0",
+    "proxy-middleware": "^0.15.0",
+    "sanitize-filename": "^1.6.1",
+    "yargs": "^6.0.0"
+  },
+  "scripts": {
+    "start": "gulp serve"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "eslintConfig": {
+    "extends": "eslint:recommended",
+    "env": {
+      "node": true,
+      "amd": true,
+      "jasmine": true,
+      "browser": true
+    },
+    "globals": {
+      "Promise": true
+    },
+    "rules": {
+      "block-scoped-var": "error",
+      "no-unused-vars": [
+        "warn",
+        {
+          "vars": "all",
+          "args": "after-used"
+        }
+      ],
+      "no-console": "warn"
+    }
+  },
+  "private": true,
+  "devDependencies": {
+    "gulp-replace": "^0.5.4"
+  }
+}

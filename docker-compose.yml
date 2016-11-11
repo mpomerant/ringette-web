@@ -1,0 +1,61 @@
+version: '2'
+
+services:
+    component-server:
+        image: cgbudockerdev1.us.oracle.com:7755/amplify/ui-component-server
+        ports:
+          - "8888:8888"
+        volumes:
+          - ../component-server/web:/usr/src/app/web           
+
+    frontend:
+        image: cgbudockerdev1.us.oracle.com:7755/amplify/ui-component/dev
+        ports:
+          - "8001:8001"
+          - "35729:35729"
+        volumes:
+          - ./src:/usr/src/app/src
+          - ./web:/usr/src/app/web
+          - ./test:/usr/src/app/test
+          - ./template:/usr/src/app/template
+          - ./reports:/usr/src/app/reports
+          - ./package.json:/usr/src/app/package.json
+          - ./karma.conf.js:/usr/src/app/karma.conf.js
+          - ./test-main.js:/usr/src/app/test-main.js
+          - ./gulpfile.js:/usr/src/app/gulpfile.js
+
+
+    selenium-ff:
+        image:  selenium/standalone-firefox-debug:3.0.0-dubnium
+        ports:
+            - "4444:4444"
+            - "5900:5900"
+        links:
+            - frontend
+        environment:
+            - no_proxy=localhost,frontend
+
+    selenium-ch:
+        image:  selenium/standalone-chrome-debug:3.0.0-dubnium
+        ports:
+            - "4445:4444"
+            - "5901:5900"
+        links:
+            - frontend
+        environment:
+            - no_proxy=localhost,frontend
+    test:
+        image: cgbudockerdev1.us.oracle.com:7755/amplify/ui-component/cucumber
+        links:
+            - selenium-ff
+            - selenium-ch
+        depends_on:
+            - selenium-ff
+            - selenium-ch
+            - frontend
+        environment:
+            - no_proxy=localhost,selenium-ch,selenium-ff
+        volumes:
+            - ./reports:/usr/src/app/reports
+            - ./test:/usr/src/app/test
+            - ./runTests.sh:/usr/src/app/runTests.sh

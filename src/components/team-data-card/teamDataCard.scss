@@ -1,0 +1,47 @@
+@import "oj.utilities";
+
+team-data-card:not(.oj-complete) {
+  visibility: hidden;
+}
+
+team-data-card {
+  .card-title {
+    background-color: blue;
+    color: white;
+  }
+
+  .data-banner {
+    margin-bottom: 1em;
+  }
+
+  .data-content {
+    margin-bottom: 1em;
+  }
+
+  .data-container {
+    border: solid;
+    border-width: 1px;
+    border-radius: 5px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    box-shadow: 3px 3px;
+  }
+  @media screen and (max-width: 415px) {
+    .card-stat {
+      font-size: 1.5em;
+    }
+
+    .card-title {
+      font-size: 1em;
+    }
+  }
+  @media screen and (min-width: 416px) {
+    .card-stat {
+      font-size: 2.5em;
+    }
+
+    .card-title {
+      font-size: 1.5em;
+    }
+  }
+}
