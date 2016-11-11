@@ -9,7 +9,6 @@ var header = require('gulp-header');
 var eslint = require('gulp-eslint');
 var path = require('path');
 var fs = require('fs');
-var Server = require('karma').Server;
 var replace = require('gulp-replace');
 
 var d = new Date();
@@ -73,7 +72,7 @@ gulp.task('connectTest', function() {
   connect.server({
     name: 'Test App',
     root: 'web',
-    port: 8001,
+    port: 80,
     middleware: function(connect, opt) {
       return [proxy('/api', {
         target: 'http://localhost:3000',
@@ -212,46 +211,12 @@ gulp.task('serve', ['copy', 'stageTemplates', 'stageComponents', 'stageCSS', 'sa
 
 
 
-gulp.task('lint', function() {
-  // ESLint ignores files with "node_modules" paths.
-  // So, it's best to have gulp ignore the directory as well.
-  // Also, Be sure to return the stream from the task;
-  // Otherwise, the task may end before the stream has finished.
-  return gulp.src(['src/**/*.js', '!node_modules/**'])
-    // eslint() attaches the lint output to the "eslint" property
-    // of the file object so it can be used by other modules.
-    .pipe(eslint())
-    // eslint.format() outputs the lint results to the console.
-    // Alternatively use eslint.formatEach() (see Docs).
-    .pipe(eslint.format())
-    .pipe(eslint.format('checkstyle', fs.createWriteStream(path.join(__dirname, 'reports', 'checkstyle.xml'))))
-    // To have the process exit with an error code (1) on
-    // lint error, return the stream and pipe to failAfterError last.
-    .pipe(eslint.failAfterError());
-});
 
-gulp.task('copy', ['lint', 'copyCSS', 'copyComponents', 'sass'], function(done) {
+gulp.task('copy', [ 'copyCSS', 'copyComponents', 'sass'], function(done) {
 
   done();
 });
 
 
-
-var postprocessLCOV = function() {
-  return gulp.src(['reports/coverage/lcov.info'])
-    .pipe(replace('SF:/usr/src/app/web/js', 'SF:src'))
-    .pipe(gulp.dest('reports'));
-};
-
-/**
- * Run test once and exit.
- * Create coverage reports.
- */
-gulp.task('test', ['lint', 'copyCSS', 'copyComponents', 'sass'], function() {
-  new Server({
-    configFile: __dirname + '/karma.conf.js',
-    singleRun: true
-  }, postprocessLCOV).start();
-});
 
 gulp.task('default', ['serve']);
