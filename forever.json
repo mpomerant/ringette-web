@@ -1,0 +1,21 @@
+[{
+  // App1
+  "uid": "api",
+  "append": true,
+  "watch": true,
+  "script": "www",
+  "sourceDir": "/Users/mpomerant/GitHub/ringette-api/bin"
+}, {
+  // App2
+  "uid": "web",
+  "append": true,
+  "watch": true,
+  "script": "www",
+  "sourceDir": "/Users/mpomerant/GitHub/ringette-web/bin"
+}, {
+  "uid": "watch",
+  "append": true,
+  "watch": false,
+  "script": "watch.js",
+  "sourceDir": "/Users/mpomerant/GitHub/ringette-data"
+}]

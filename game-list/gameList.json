@@ -7,11 +7,6 @@
     "data": {
       "description": "The name of the team to display",
       "type": "Array"
-    },
-    "tournament": {
-      "description": "Indicate if the game list should show tournament headers",
-      "type": "boolean",
-      "default": "false"
     }
   }
 }

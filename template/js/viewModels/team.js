@@ -5,8 +5,8 @@
 /*
  * Your about ViewModel code goes here
  */
-define(['ojs/ojcore', 'knockout', 'ojs/ojmodel', 'ojs/ojchart', 'ojs/ojtimezonedata', 'ojs/ojcomposite', 'components/game-list/loader', 'components/team-data-card/loader', 'components/team-hero/loader'],
-  function(oj, ko) {
+define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojmodel', 'ojs/ojchart', 'ojs/ojtimezonedata', 'ojs/ojcomposite', 'components/game-list/loader', 'components/team-data-card/loader', 'components/team-hero/loader'],
+  function(oj, ko, $) {
 
     function TeamViewModel() {
       var self = this;
@@ -55,10 +55,12 @@ define(['ojs/ojcore', 'knockout', 'ojs/ojmodel', 'ojs/ojchart', 'ojs/ojtimezoned
         parse: function(response) {
           response.regularSeason.forEach(function(game) {
             game.gameDate = self.converter.format(game.gameDate);
+            game.score = game.homeScore + '-' + game.visitorScore;
           })
 
           response.tournament.forEach(function(game) {
             game.gameDate = self.converter.format(game.gameDate);
+            game.score = game.homeScore + '-' + game.visitorScore;
           })
 
           var record = response.regularSeasonRecord;
@@ -104,7 +106,7 @@ define(['ojs/ojcore', 'knockout', 'ojs/ojmodel', 'ojs/ojchart', 'ojs/ojtimezoned
         var elo = new eloModel();
         elo.urlRoot = 'api/standings/elo/' + self.teamId();
         elo.fetch({
-          success: function(model, response) {
+          success: function(model) {
 
             var scores = model.get('games').map(function(game) {
               return parseFloat(game.score);
@@ -121,7 +123,7 @@ define(['ojs/ojcore', 'knockout', 'ojs/ojmodel', 'ojs/ojchart', 'ojs/ojtimezoned
             self.lineGroupsValue(dates);
             var max = Math.max.apply(null, scores) + 25;
             var min = Math.min.apply(null, scores) - 50;
-            console.log(max, min);
+
             $("#lineChart").ojChart("option", "yAxis.max", max);
             $("#lineChart").ojChart("option", "yAxis.min", min);
             $('#lineChart').ojChart("refresh");
@@ -138,7 +140,7 @@ define(['ojs/ojcore', 'knockout', 'ojs/ojmodel', 'ojs/ojchart', 'ojs/ojtimezoned
        * @param {Function} info.valueAccessor - The binding's value accessor.
        * @param {boolean} info.fromCache - A boolean indicating whether the module was retrieved from cache.
        */
-      self.handleAttached = function(info) {
+      self.handleAttached = function() {
         // Implement if needed
       };
 
@@ -151,7 +153,7 @@ define(['ojs/ojcore', 'knockout', 'ojs/ojmodel', 'ojs/ojchart', 'ojs/ojtimezoned
        * @param {Node} info.element - DOM element or where the binding is attached. This may be a 'virtual' element (comment node).
        * @param {Function} info.valueAccessor - The binding's value accessor.
        */
-      self.handleBindingsApplied = function(info) {
+      self.handleBindingsApplied = function() {
 
       };
 
@@ -163,7 +165,7 @@ define(['ojs/ojcore', 'knockout', 'ojs/ojmodel', 'ojs/ojchart', 'ojs/ojtimezoned
        * @param {Function} info.valueAccessor - The binding's value accessor.
        * @param {Array} info.cachedNodes - An Array containing cached nodes for the View if the cache is enabled.
        */
-      self.handleDetached = function(info) {
+      self.handleDetached = function() {
         // Implement if needed
       };
     }

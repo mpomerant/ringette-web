@@ -5,17 +5,49 @@
 /*
  * Your customer ViewModel code goes here
  */
-define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojlistview', 'ojs/ojcollectiontabledatasource', 'ojs/ojmodel'],
+define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojlistview', 'ojs/ojcollectiontabledatasource', 'ojs/ojpictochart', 'ojs/ojmodel'],
   function(oj, ko, $) {
 
     function RankingViewModel() {
       var self = this;
       // Below are a subset of the ViewModel methods invoked by the ojModule binding
       // Please reference the ojModule jsDoc for additionaly available methods.
-
-
+      self.loaded = ko.observable(false);
+      self.pictoChartItems = ko.observableArray([{
+        name: 'Have Sleep Problems',
+        shape: 'human',
+        count: 7,
+        color: '#ed6647'
+      }, {
+        name: 'Sleep Well',
+        shape: 'human',
+        count: 3
+      }]);
       var model = oj.Model.extend({
-        idAttribute: 'team'
+        idAttribute: 'team',
+        parse: function(response) {
+          var trend = response.games.map(function(game) {
+            var win = game.result > 0;
+            var loss = game.result < 0;
+            var tie = game.result === 0;
+            var name = win ? 'Win' : loss ? 'Loss' : 'Tie';
+            var shape = win ? 'triangleUp' : loss ? 'triangleDown' : 'circle';
+            var color = win ? '#29ba1c' : loss ? '#ed6647' : '#267db3';
+            var count = 1;
+
+            return {
+              name: name,
+              shape: shape,
+              color: color,
+              count: count
+            }
+          })
+          if (trend.length > 5) {
+            trend = trend.slice(trend.length - 5);
+          }
+          response.trend = trend;
+          return response;
+        }
       });
 
       var collection = new oj.Collection(null, {
@@ -45,6 +77,7 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojlistview', 'ojs/ojcollectiont
       self.handleActivated = function(info) {
         var ds = new oj.CollectionTableDataSource(collection)
         self.dataSource(ds);
+
       };
 
       /**
@@ -58,6 +91,7 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojlistview', 'ojs/ojcollectiont
        */
       self.handleAttached = function(info) {
         // Implement if needed
+
       };
 
 
@@ -71,6 +105,7 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojlistview', 'ojs/ojcollectiont
        */
       self.handleBindingsApplied = function(info) {
         // Implement if needed
+        self.loaded(true);
       };
 
       /*
