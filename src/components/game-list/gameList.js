@@ -42,6 +42,17 @@ define(['ojs/ojcore', 'knockout', 'ojs/ojlistview', 'ojs/ojarraytabledatasource'
 
       }
 
+      self.navigateHome = function(data, event) {
+
+        oj.Router.rootInstance.go('/team/' + data._homeId);
+
+      };
+
+      self.navigateVisitor = function(data, event) {
+
+        oj.Router.rootInstance.go('/team/' + data._visitorId);
+
+      };
       /**
        * This optional method may be implemented on the ViewModel and will be invoked after the
        * bindings are applied on this View.

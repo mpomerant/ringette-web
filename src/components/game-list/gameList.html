@@ -54,7 +54,7 @@
 
 
         <div class="table-data oj-sm-3  oj-flex-item">
-          <span data-bind="text: homeId" />
+          <a class="oj-flex-item" data-bind="click: $parent.navigateHome, text: homeId"></a>
         </div>
 
         <div class="table-data oj-sm-3  oj-flex-item">
@@ -63,7 +63,7 @@
 
 
         <div class="table-data oj-sm-3 oj-flex-item">
-          <span data-bind="text: visitorId" />
+          <a class="oj-flex-item" data-bind="click: $parent.navigateVisitor, text: visitorId"></a>
         </div>
 
 
