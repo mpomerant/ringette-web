@@ -23,6 +23,7 @@ define(['ojs/ojcore', 'knockout', 'ojs/ojrouter', 'ojs/ojknockout', 'ojs/ojarray
       self.router.configure({
         'dashboard': {
           label: 'Dashboard',
+          isDefault: true
 
         },
         'standings': {
