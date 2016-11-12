@@ -3,8 +3,10 @@
  The Universal Permissive License (UPL), Version 1.0
  -->
 <div class="oj-hybrid-padding">
-  <h3>Dashboard Content Area</h3>
-  <div>
-      To change the content of this section, you will make edits to the dashboard.html file located in the /js/views folder.
+  <h3>Dashboard</h3>
+  <!--ko if: loaded -->
+  <div class="panel">
+    <game-list tournament="true" title="Latest Results" data={{recentGames}}></game-list>
   </div>
+  <!-- /ko -->
 </div>

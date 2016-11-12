@@ -21,9 +21,12 @@ define(['ojs/ojcore', 'knockout', 'ojs/ojrouter', 'ojs/ojknockout', 'ojs/ojarray
       // Router setup
       self.router = oj.Router.rootInstance;
       self.router.configure({
+        'dashboard': {
+          label: 'Dashboard',
+
+        },
         'standings': {
-          label: 'Standings',
-          isDefault: true
+          label: 'Standings'
         },
         'rankings': {
           label: 'Rankings'
@@ -55,6 +58,10 @@ define(['ojs/ojcore', 'knockout', 'ojs/ojrouter', 'ojs/ojknockout', 'ojs/ojarray
 
       // Navigation setup
       var navData = [{
+        name: 'Dashboard',
+        id: 'dashboard',
+        iconClass: 'oj-navigationlist-item-icon demo-icon-font-24 demo-chart-icon-24'
+      }, {
         name: 'Standings',
         id: 'standings',
         iconClass: 'oj-navigationlist-item-icon demo-icon-font-24 demo-fire-icon-24'

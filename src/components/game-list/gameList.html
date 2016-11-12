@@ -46,7 +46,7 @@
   </ul>
 
   <script type="text/html" id="standings_template">
-    <li data-bind="attr: {id: _id}">
+    <li data-bind="css: {'tournament-game': tournament}, attr: {id: _id}">
       <div class="oj-flex" style="flex-wrap: nowrap">
         <div class="table-data oj-sm-3 oj-flex-item">
           <span data-bind="text: gameDate" />

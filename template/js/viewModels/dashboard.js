@@ -5,11 +5,38 @@
 /*
  * Your dashboard ViewModel code goes here
  */
-define(['ojs/ojcore', 'knockout', 'jquery'],
- function(oj, ko, $) {
-  
+define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojmodel', 'ojs/ojtimezonedata', 'ojs/ojcomposite', 'components/game-list/loader'],
+  function(oj, ko, $) {
+
     function DashboardViewModel() {
       var self = this;
+
+      var options = {
+        formatType: 'date',
+        dateFormat: 'medium'
+      };
+      var converterFactory = oj.Validation.converterFactory("datetime");
+      self.converter = converterFactory.createConverter(options);
+      self.recentGames = ko.observableArray([]);
+      self.loaded = ko.observable(false);
+      var model = oj.Model.extend({
+        idAttribute: '_id',
+        parse: function(response) {
+
+          response.gameDate = self.converter.format(response.gameDate);
+          response.score = response.homeScore + '-' + response.visitorScore;
+
+
+
+          return response
+        }
+      });
+
+      var collection = new oj.Collection(null, {
+        url: 'api/game',
+        fetchSize: 10,
+        model: model
+      });
       // Below are a subset of the ViewModel methods invoked by the ojModule binding
       // Please reference the ojModule jsDoc for additionaly available methods.
 
@@ -25,7 +52,12 @@ define(['ojs/ojcore', 'knockout', 'jquery'],
        * the promise is resolved
        */
       self.handleActivated = function(info) {
-        // Implement if needed
+        collection.fetch({
+          success: function(collection, response) {
+            self.recentGames(response);
+            self.loaded(true);
+          }
+        })
       };
 
       /**
@@ -43,7 +75,7 @@ define(['ojs/ojcore', 'knockout', 'jquery'],
 
 
       /**
-       * Optional ViewModel method invoked after the bindings are applied on this View. 
+       * Optional ViewModel method invoked after the bindings are applied on this View.
        * If the current View is retrieved from cache, the bindings will not be re-applied
        * and this callback will not be invoked.
        * @param {Object} info - An object with the following key-value pairs:
