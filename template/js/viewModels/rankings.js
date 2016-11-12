@@ -13,16 +13,7 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojlistview', 'ojs/ojcollectiont
       // Below are a subset of the ViewModel methods invoked by the ojModule binding
       // Please reference the ojModule jsDoc for additionaly available methods.
       self.loaded = ko.observable(false);
-      self.pictoChartItems = ko.observableArray([{
-        name: 'Have Sleep Problems',
-        shape: 'human',
-        count: 7,
-        color: '#ed6647'
-      }, {
-        name: 'Sleep Well',
-        shape: 'human',
-        count: 3
-      }]);
+
       var model = oj.Model.extend({
         idAttribute: 'team',
         parse: function(response) {
@@ -31,8 +22,8 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojlistview', 'ojs/ojcollectiont
             var loss = game.result < 0;
             var tie = game.result === 0;
             var name = win ? 'Win' : loss ? 'Loss' : 'Tie';
-            var shape = win ? 'triangleUp' : loss ? 'triangleDown' : 'circle';
-            var color = win ? '#29ba1c' : loss ? '#ed6647' : '#267db3';
+            var shape = win ? 'rectangle' : loss ? 'rectangle' : 'rectangle';
+            var color = win ? '#267db3' : loss ? '#ed6647' : '#29ba1c';
             var count = 1;
 
             return {
