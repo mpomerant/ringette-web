@@ -44,13 +44,17 @@ define(['ojs/ojcore', 'knockout', 'ojs/ojlistview', 'ojs/ojarraytabledatasource'
 
       self.navigateHome = function(data, event) {
 
-        oj.Router.rootInstance.go('/team/' + data._homeId);
+        oj.Router.rootInstance.go('/team/' + data._homeId).then(function() {
+          oj.Router.sync();
+        });
 
       };
 
       self.navigateVisitor = function(data, event) {
 
-        oj.Router.rootInstance.go('/team/' + data._visitorId);
+        oj.Router.rootInstance.go('/team/' + data._visitorId).then(function() {
+          oj.Router.sync();
+        })
 
       };
       /**

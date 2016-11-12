@@ -40,20 +40,7 @@ define(['ojs/ojcore', 'knockout', 'ojs/ojrouter', 'ojs/ojknockout', 'ojs/ojarray
         }
       });
 
-      var teamIdRouter = self.router.createChildRouter('teamId', 'team');
-      teamIdRouter.configure(function(stateId) {
-        var state;
 
-        if (stateId) {
-          state = new oj.RouterState(stateId, {
-
-            enter: function() {
-
-            }
-          }, teamIdRouter);
-        }
-        return state;
-      });
 
       oj.Router.defaults['urlAdapter'] = new oj.Router.urlParamAdapter();
 
