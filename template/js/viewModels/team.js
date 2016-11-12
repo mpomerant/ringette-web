@@ -10,7 +10,8 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojmodel', 'ojs/ojchart', 'ojs/o
 
     function TeamViewModel() {
       var self = this;
-
+      self.loaded = ko.observable(false);
+      self.teamRouter = null;
 
       var options = {
         formatType: 'date',
@@ -74,61 +75,85 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojmodel', 'ojs/ojchart', 'ojs/o
       // Below are a subset of the ViewModel methods invoked by the ojModule binding
       // Please reference the ojModule jsDoc for additionaly available methods.
 
-      /**
-       * Optional ViewModel method invoked when this ViewModel is about to be
-       * used for the View transition.  The application can put data fetch logic
-       * here that can return a Promise which will delay the handleAttached function
-       * call below until the Promise is resolved.
-       * @param {Object} info - An object with the following key-value pairs:
-       * @param {Node} info.element - DOM element or where the binding is attached. This may be a 'virtual' element (comment node).
-       * @param {Function} info.valueAccessor - The binding's value accessor.
-       * @return {Promise|undefined} - If the callback returns a Promise, the next phase (attaching DOM) will be delayed until
-       * the promise is resolved
-       */
+
+      var initRouter = function() {
+          self.teamId(self.teamRouter.stateId());
+
+          var myTeam = new model();
+          myTeam._id = self.teamId();
+          myTeam.urlRoot = 'api/team/' + self.teamId();
+          myTeam.fetch({
+            success: function(model, response) {
+              self.loaded(false);
+              self.teamName(response.team.name);
+              self.data(response);
+              self.regularSeason(response.regularSeason);
+              self.tournament(response.tournament);
+              self.loaded(true);
+            }
+          })
+          var elo = new eloModel();
+          elo.urlRoot = 'api/standings/elo/' + self.teamId();
+          elo.fetch({
+            success: function(model) {
+
+              var scores = model.get('games').map(function(game) {
+                return parseFloat(game.score);
+              });
+
+
+              self.eloScores(scores);
+
+
+
+              var dates = model.get('games').map(function(game) {
+                return game.date;
+              });
+              self.lineGroupsValue(dates);
+              var max = Math.max.apply(null, scores) + 25;
+              var min = Math.min.apply(null, scores) - 50;
+
+              $("#lineChart").ojChart("option", "yAxis.max", max);
+              $("#lineChart").ojChart("option", "yAxis.min", min);
+              $('#lineChart').ojChart("refresh");
+            }
+          })
+        }
+        /**
+         * Optional ViewModel method invoked when this ViewModel is about to be
+         * used for the View transition.  The application can put data fetch logic
+         * here that can return a Promise which will delay the handleAttached function
+         * call below until the Promise is resolved.
+         * @param {Object} info - An object with the following key-value pairs:
+         * @param {Node} info.element - DOM element or where the binding is attached. This may be a 'virtual' element (comment node).
+         * @param {Function} info.valueAccessor - The binding's value accessor.
+         * @return {Promise|undefined} - If the callback returns a Promise, the next phase (attaching DOM) will be delayed until
+         * the promise is resolved
+         */
       self.handleActivated = function() {
 
-        var teamRouter = oj.Router.rootInstance.getChildRouter('teamId');
+        self.teamRouter = oj.Router.rootInstance.getChildRouter('teamId');
+        if (!self.teamRouter) {
+          self.teamRouter = oj.Router.rootInstance.createChildRouter('teamId', 'team');
+          self.teamRouter.configure(function(stateId) {
+            var state;
 
-        self.teamId(teamRouter.stateId());
-        self.loaded = ko.observable(false);
-        var myTeam = new model();
-        myTeam._id = self.teamId();
-        myTeam.urlRoot = 'api/team/' + self.teamId();
-        myTeam.fetch({
-          success: function(model, response) {
-            self.teamName(response.team.name);
-            self.data(response);
-            self.regularSeason(response.regularSeason);
-            self.tournament(response.tournament);
-            self.loaded(true);
-          }
-        })
-        var elo = new eloModel();
-        elo.urlRoot = 'api/standings/elo/' + self.teamId();
-        elo.fetch({
-          success: function(model) {
+            if (stateId) {
+              state = new oj.RouterState(stateId, {
 
-            var scores = model.get('games').map(function(game) {
-              return parseFloat(game.score);
-            });
+                enter: function() {
+                  initRouter();
+                }
+              }, self.teamRouter);
+            }
+            return state;
+          });
+          oj.Router.sync().then(function() {
+
+          });
+        }
 
 
-            self.eloScores(scores);
-
-
-
-            var dates = model.get('games').map(function(game) {
-              return game.date;
-            });
-            self.lineGroupsValue(dates);
-            var max = Math.max.apply(null, scores) + 25;
-            var min = Math.min.apply(null, scores) - 50;
-
-            $("#lineChart").ojChart("option", "yAxis.max", max);
-            $("#lineChart").ojChart("option", "yAxis.min", min);
-            $('#lineChart').ojChart("refresh");
-          }
-        })
       };
 
       /**
