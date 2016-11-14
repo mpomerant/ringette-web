@@ -52,7 +52,7 @@ define(['ojs/ojcore', 'knockout', 'ojs/ojrouter', 'ojs/ojknockout', 'ojs/ojarray
       var navData = [{
         name: 'Dashboard',
         id: 'dashboard',
-        iconClass: 'oj-navigationlist-item-icon demo-icon-font-24 demo-chart-icon-24'
+        iconClass: 'oj-navigationlist-item-icon icon-info-sign icon-2x'
       }, {
         name: 'Standings',
         id: 'standings',
@@ -64,11 +64,11 @@ define(['ojs/ojcore', 'knockout', 'ojs/ojrouter', 'ojs/ojknockout', 'ojs/ojarray
       }, {
         name: 'Teams',
         id: 'teams',
-        iconClass: 'oj-navigationlist-item-icon demo-icon-font-24 demo-info-icon-24'
+        iconClass: 'oj-navigationlist-item-icon icon-rocket icon-2x'
       }, {
         name: 'Associations',
         id: 'associations',
-        iconClass: 'oj-navigationlist-item-icon demo-icon-font-24 demo-info-icon-24'
+        iconClass: 'oj-navigationlist-item-icon icon-th icon-2x'
       }];
       self.navDataSource = new oj.ArrayTableDataSource(navData, {
         idAttribute: 'id'
