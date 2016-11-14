@@ -1,10 +1,10 @@
 @import "oj.utilities";
 
-game-list:not(.oj-complete) {
+association-standings:not(.oj-complete) {
   visibility: hidden;
 }
 
-game-list {
+association-standings {
   .table-heading {
     font-weight: bold;
     text-align: center;
