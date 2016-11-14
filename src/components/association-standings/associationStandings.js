@@ -84,21 +84,15 @@ define(['ojs/ojcore', 'knockout', 'ojs/ojlistview', 'ojs/ojcollectiontabledataso
 
       }
 
-      self.navigateHome = function(data, event) {
+      self.navigate = function(data, event) {
 
-        oj.Router.rootInstance.go('/team/' + data._homeId).then(function() {
+        oj.Router.rootInstance.go('/team/' + data.id).then(function() {
           oj.Router.sync();
         });
 
       };
 
-      self.navigateVisitor = function(data, event) {
 
-        oj.Router.rootInstance.go('/team/' + data._visitorId).then(function() {
-          oj.Router.sync();
-        })
-
-      };
       /**
        * This optional method may be implemented on the ViewModel and will be invoked after the
        * bindings are applied on this View.
