@@ -5,14 +5,14 @@
 /*
  * Your incidents ViewModel code goes here
  */
-define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojknockout', 'promise', 'ojs/ojlistview', 'ojs/ojcollectiontabledatasource', 'ojs/ojmodel'],
+define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojknockout', 'promise', 'ojs/ojtabs', 'ojs/ojcomposite', 'components/association-standings/loader'],
   function(oj, ko, $) {
 
     function AssociationsViewModel() {
       var self = this;
       // Below are a subset of the ViewModel methods invoked by the ojModule binding
       // Please reference the ojModule jsDoc for additionaly available methods.
-      self.associations = ['Central', 'Eastern', 'Southern', 'North East', 'Western'];
+      self.associations = ['Eastern', 'Southern', 'Central', 'North East', 'Western'];
 
 
 
@@ -57,6 +57,7 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojknockout', 'promise', 'ojs/oj
        */
       self.handleBindingsApplied = function(info) {
         // Implement if needed
+        $("#tabs").ojTabs("refresh");
       };
 
       /*

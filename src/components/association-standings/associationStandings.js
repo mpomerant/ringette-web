@@ -1,4 +1,4 @@
-define(['ojs/ojcore', 'knockout', 'ojs/ojlistview', 'ojs/ojarraytabledatasource'],
+define(['ojs/ojcore', 'knockout', 'ojs/ojlistview', 'ojs/ojcollectiontabledatasource'],
 
   function(oj, ko) {
     /**
@@ -8,7 +8,30 @@ define(['ojs/ojcore', 'knockout', 'ojs/ojlistview', 'ojs/ojarraytabledatasource'
       var self = this;
       var element = context.element;
       self.loaded = ko.observable(false);
+      self.association = ko.observable('');
+      self.url = ko.computed(function() {
+        return '/api/standings/' + self.association();
+      })
 
+
+
+      var model = oj.Model.extend({
+        idAttribute: 'team',
+        parse: function(response) {
+          response.regularSeasonRecord = response.rs.win + '-' + response.rs.loss + '-' + response.rs.tie;
+          response.tournamentRecord = response.tournament.win + '-' + response.tournament.loss + '-' + response.tournament.tie;
+          response.qualifyingRecord = response.qualifying.win + '-' + response.qualifying.loss + '-' + response.qualifying.tie;
+          response.rsPoints = response.rs.points;
+          return response;
+
+        }
+      });
+
+      var collection = new oj.Collection(null, {
+        url: self.url(),
+        fetchSize: -1,
+        model: model
+      });
       self.dataSource = ko.observable();
 
 
@@ -31,6 +54,24 @@ define(['ojs/ojcore', 'knockout', 'ojs/ojlistview', 'ojs/ojarraytabledatasource'
        **/
       self.activated = function(context) {
         console.log('activated');
+        context.props.then(function(properties) {
+          if (properties.association) {
+            self.association(properties.association);
+            collection.url = self.url();
+            var ds = new oj.CollectionTableDataSource(collection)
+            ds.sort({
+              key: 'rsPoints',
+              direction: 'descending'
+
+            })
+            self.dataSource(ds);
+            self.loaded(true);
+          }
+
+
+
+        });
+
 
       }
 
@@ -64,17 +105,7 @@ define(['ojs/ojcore', 'knockout', 'ojs/ojlistview', 'ojs/ojarraytabledatasource'
        **/
       self.bindingsApplied = function(context) {
         console.log('bindings applied');
-        context.props.then(function(properties) {
-          if (properties.data) {
-            var ds = new oj.ArrayTableDataSource(properties.data)
 
-            self.dataSource(ds);
-            self.loaded(true);
-          }
-
-
-
-        });
       }
 
       /**

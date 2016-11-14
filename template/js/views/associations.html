@@ -1,0 +1,19 @@
+<div id="tabs" data-bind="ojComponent:{component: 'ojTabs'}">
+  <!-- tab bar -->
+  <ul>
+    <!-- ko foreach: associations -->
+    <li><span data-bind="text: $data">Tab 1</span></li>
+    <!--  /ko -->
+
+
+  </ul>
+
+  <!-- tab contents -->
+  <!-- ko foreach: associations -->
+  <div data-bind="attr:{id: 'tabs-' + $index()}">
+    <association-standings data-bind="attr: {association: $data} "> </association-standings>
+  </div>
+  <!-- /ko -->
+
+
+</div>
