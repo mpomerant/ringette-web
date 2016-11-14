@@ -41,7 +41,7 @@
   </ul>
 
   <script type="text/html" id="standings_template">
-    <li data-bind="attr: {id: team}">
+    <li data-bind="css: {leader: leader},attr: {id: team}">
       <div class="oj-flex" style="flex-wrap: nowrap">
         <div class="oj-sm-3 oj-md-3 oj-flex-item">
           <a data-bind="text: team, click: $parent.navigate" />
