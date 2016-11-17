@@ -13,7 +13,7 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojknockout', 'promise', 'ojs/oj
       // Below are a subset of the ViewModel methods invoked by the ojModule binding
       // Please reference the ojModule jsDoc for additionaly available methods.
       self.navigate = function(data, event) {
-        console.log('hello');
+
         oj.Router.rootInstance.go('/team/' + data.id);
 
       }
