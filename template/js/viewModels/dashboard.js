@@ -34,7 +34,7 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojmodel', 'ojs/ojtimezonedata',
 
       var collection = new oj.Collection(null, {
         url: 'api/game',
-        fetchSize: 10,
+        fetchSize: 15,
         model: model
       });
       // Below are a subset of the ViewModel methods invoked by the ojModule binding
