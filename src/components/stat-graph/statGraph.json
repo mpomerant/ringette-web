@@ -1,0 +1,17 @@
+{
+  "properties": {
+    "name": {
+      "description": "The name of the stat",
+      "type": "string"
+    },
+    "stat1": {
+      "description": "the first stat",
+      "type": "number"
+    },
+    "stat2": {
+      "description": "the second stat",
+      "type": "number"
+    }
+  }
+
+}

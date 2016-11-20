@@ -41,6 +41,10 @@ define(['ojs/ojcore', 'knockout', 'ojs/ojrouter', 'ojs/ojknockout', 'ojs/ojarray
 
         'associations': {
           label: 'Associations'
+        },
+
+        'compare': {
+          label: 'Compare'
         }
       });
 
@@ -69,6 +73,10 @@ define(['ojs/ojcore', 'knockout', 'ojs/ojrouter', 'ojs/ojknockout', 'ojs/ojarray
         name: 'Associations',
         id: 'associations',
         iconClass: 'oj-navigationlist-item-icon icon-th icon-2x'
+      }, {
+        name: 'Compare',
+        id: 'compare',
+        iconClass: 'oj-navigationlist-item-icon icon-exchange icon-2x'
       }];
       self.navDataSource = new oj.ArrayTableDataSource(navData, {
         idAttribute: 'id'

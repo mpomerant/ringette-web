@@ -1,0 +1,19 @@
+<div class="oj-flex-bar">
+    <div class="oj-flex-bar-start stat">
+        <span data-bind="text: stat1">Rating</span>
+    </div>
+    <div class="oj-flex-bar-middle oj-sm-justify-content-center stat-title">
+        <span data-bind="text: $props.name">Rating</span>
+    </div>
+    <div class="oj-flex-bar-end stat">
+        <span data-bind="text: stat2">Rating</span>
+    </div>
+</div>
+<div class="oj-flex">
+    <div class="oj-flex-item">
+        <svg data-bind="attr: {width: width, height: 40 }">
+            <rect data-bind="attr: {x: team1X, width: team1Width }" y="0" height="10" style="fill:#29ba1c;" />
+            <rect data-bind="attr: {x: team2X, width: team2Width }" y="0" height="10" style="fill:#267db3;" />
+        </svg>
+    </div>
+</div>
