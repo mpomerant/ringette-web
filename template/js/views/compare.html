@@ -1,62 +1,50 @@
 <div class="panel2">
-<div class="oj-flex">
-	<div class="oj-flex-item">
-	<label for="team1data">Team #1  </label>
-      <select id="team1data" data-bind="ojComponent: {component: 'ojSelect', optionChange: team1Changed, value: team1, renderMode: 'native'}"> 
-      <!-- ko foreach: teams -->
-       <option data-bind="value:$data, text:$data"></option>
-      <!-- /ko -->
-      </select>
-	</div>
-	<div class="oj-flex-item">
-	<label for="team2data">Team #2  </label>
-		<select id="team2data" data-bind="ojComponent: {component: 'ojSelect', optionChange: team2Changed, value: team2, renderMode: 'native'}"> 
-      <!-- ko foreach: teams -->
-       <option data-bind="value:$data, text:$data"></option>
-      <!-- /ko -->
-      </select>
-	</div>
-
-</div>
-
-
-<!-- ko if: ready -->
-<div class="oj-flex">
-<div class="oj-flex-item team1">
-	<span data-bind="text: team1Name">
-</div>
-<div class="oj-flex-item team2">
-	<span data-bind="text: team2Name">
-</div>
-</div>
-<div class="stats-header">
-<span>Total</span>
-</div>
-<stat-graph name="Rating" data-bind="attr: {stat1: team1Object().rating, stat2: team2Object().rating}"></stat-graph>
-<stat-graph name="Goals Per Game" data-bind="attr: {stat1: team1Object().total_gfpg, stat2: team2Object().total_gfpg}"></stat-graph>
-<stat-graph name="Goals Against Per Game" data-bind="attr: {stat1: team1Object().total_gapg, stat2: team2Object().total_gapg}"></stat-graph>
-
-<div class="stats-header">
-<span>Tournament</span>
-</div>
-<stat-graph name="Goals Per Game" data-bind="attr: {stat1: team1Object().t_gfpg, stat2: team2Object().t_gfpg}"></stat-graph>
-<stat-graph name="Goals Against Per Game" data-bind="attr: {stat1: team1Object().t_gapg, stat2: team2Object().t_gapg}"></stat-graph>
-<stat-graph name="Goals For" data-bind="attr: {stat1: team1Object().t_for, stat2: team2Object().t_for}"></stat-graph>
-<stat-graph name="Goals Against" data-bind="attr: {stat1: team1Object().t_against, stat2: team2Object().t_against}"></stat-graph>
-
-
-
-<div class="stats-header">
-<span>Regular Season</span>
-</div>
-<stat-graph name="Goals Per Game" data-bind="attr: {stat1: team1Object().rs_gfpg, stat2: team2Object().rs_gfpg}"></stat-graph>
-<stat-graph name="Goals Against Per Game" data-bind="attr: {stat1: team1Object().rs_gapg, stat2: team2Object().rs_gapg}"></stat-graph>
-<stat-graph name="Goals For" data-bind="attr: {stat1: team1Object().rs_for, stat2: team2Object().rs_for}"></stat-graph>
-<stat-graph name="Goals Against" data-bind="attr: {stat1: team1Object().rs_against, stat2: team2Object().rs_against}"></stat-graph>
-
-
-
-
-
-<!-- /ko -->
+    <div class="oj-flex">
+        <div class="oj-flex-item">
+            <label for="team1data">Team #1 </label>
+            <select id="team1data" data-bind="ojComponent: {component: 'ojSelect', optionChange: team1Changed, value: team1, renderMode: 'native'}">
+                <!-- ko foreach: teams -->
+                <option data-bind="value:$data, text:$data"></option>
+                <!-- /ko -->
+            </select>
+        </div>
+        <div class="oj-flex-item">
+            <label for="team2data">Team #2 </label>
+            <select id="team2data" data-bind="ojComponent: {component: 'ojSelect', optionChange: team2Changed, value: team2, renderMode: 'native'}">
+                <!-- ko foreach: teams -->
+                <option data-bind="value:$data, text:$data"></option>
+                <!-- /ko -->
+            </select>
+        </div>
+    </div>
+    <!-- ko if: ready -->
+    <div class="oj-flex">
+        <div class="oj-flex-item oj-sm-6 team1">
+            <span data-bind="text: team1Name"></span>
+        </div>
+        <div class="oj-flex-item oj-sm-6 team2">
+            <span data-bind="text: team2Name"></span>
+        </div>
+    </div>
+    <div class="stats-header">
+        <span>Total</span>
+    </div>
+    <stat-graph name="Rating" data-bind="attr: {stat1: team1Object().rating, stat2: team2Object().rating}"></stat-graph>
+    <stat-graph name="Goals Per Game" data-bind="attr: {stat1: team1Object().total_gfpg, stat2: team2Object().total_gfpg}"></stat-graph>
+    <stat-graph name="Goals Against Per Game" data-bind="attr: {stat1: team1Object().total_gapg, stat2: team2Object().total_gapg}"></stat-graph>
+    <div class="stats-header">
+        <span>Tournament</span>
+    </div>
+    <stat-graph name="Goals Per Game" data-bind="attr: {stat1: team1Object().t_gfpg, stat2: team2Object().t_gfpg}"></stat-graph>
+    <stat-graph name="Goals Against Per Game" data-bind="attr: {stat1: team1Object().t_gapg, stat2: team2Object().t_gapg}"></stat-graph>
+    <stat-graph name="Goals For" data-bind="attr: {stat1: team1Object().t_for, stat2: team2Object().t_for}"></stat-graph>
+    <stat-graph name="Goals Against" data-bind="attr: {stat1: team1Object().t_against, stat2: team2Object().t_against}"></stat-graph>
+    <div class="stats-header">
+        <span>Regular Season</span>
+    </div>
+    <stat-graph name="Goals Per Game" data-bind="attr: {stat1: team1Object().rs_gfpg, stat2: team2Object().rs_gfpg}"></stat-graph>
+    <stat-graph name="Goals Against Per Game" data-bind="attr: {stat1: team1Object().rs_gapg, stat2: team2Object().rs_gapg}"></stat-graph>
+    <stat-graph name="Goals For" data-bind="attr: {stat1: team1Object().rs_for, stat2: team2Object().rs_for}"></stat-graph>
+    <stat-graph name="Goals Against" data-bind="attr: {stat1: team1Object().rs_against, stat2: team2Object().rs_against}"></stat-graph>
+    <!-- /ko -->
 </div>

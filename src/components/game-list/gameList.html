@@ -12,18 +12,21 @@
   <div class="oj-flex" style="flex-wrap: nowrap">
 
 
-    <div class="table-heading oj-sm-3 oj-flex-item">
+    <div class="table-heading oj-sm-3 oj-md-2 oj-flex-item">
       <span>Date</span>
     </div>
 
-
-
+    <!-- ko if: tournament -->
+    <div class="table-heading oj-sm-only-hide oj-md-2 oj-flex-item">
+      <span>Tournament</span>
+    </div>
+    <!-- /ko -->
 
     <div class="table-heading oj-sm-3  oj-flex-item">
       <span>Home</span>
     </div>
 
-    <div class="table-heading oj-sm-3  oj-flex-item">
+    <div class="table-heading oj-sm-3  oj-md-2 oj-flex-item">
       <span>Score</span>
     </div>
 
@@ -31,7 +34,7 @@
       <span>Visitor</span>
     </div>
 
-
+    
 
 
 
@@ -47,17 +50,29 @@
 
   <script type="text/html" id="standings_template">
     <li data-bind="css: {'tournament-game': tournament}, attr: {id: _id}">
+      <!-- ko if: tournament -->
+        <div class="oj-flex oj-md-hide">
+          <div class="table-data oj-flex-item oj-sm-3">
+            <span data-bind="text: tournament"></span>
+          </div>
+        </div>
+      <!-- /ko -->
       <div class="oj-flex" style="flex-wrap: nowrap">
-        <div class="table-data oj-sm-3 oj-flex-item">
+        <div class="table-data oj-sm-3 oj-md-2 oj-flex-item">
           <span data-bind="text: gameDate" />
         </div>
 
+        <!-- ko if: $parent.tournament -->
+        <div class="table-data oj-sm-only-hide oj-md-2 oj-flex-item">
+          <span data-bind="text: tournament" />
+        </div>
+        <!-- /ko -->
 
         <div class="table-data oj-sm-3  oj-flex-item">
           <a class="oj-flex-item" data-bind="click: $parent.navigateHome, text: homeId"></a>
         </div>
 
-        <div class="table-data oj-sm-3  oj-flex-item">
+        <div class="table-data oj-sm-3  oj-md-2 oj-flex-item">
           <span data-bind="text: score" />
         </div>
 
@@ -69,6 +84,7 @@
 
 
       </div>
+
     </li>
   </script>
 

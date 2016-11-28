@@ -10,6 +10,7 @@ define(['ojs/ojcore', 'knockout', 'ojs/ojlistview', 'ojs/ojarraytabledatasource'
       self.loaded = ko.observable(false);
 
       self.dataSource = ko.observable();
+      self.tournament = ko.observable(false);
 
 
 
@@ -71,6 +72,8 @@ define(['ojs/ojcore', 'knockout', 'ojs/ojlistview', 'ojs/ojarraytabledatasource'
             self.dataSource(ds);
             self.loaded(true);
           }
+
+          self.tournament(properties.tournament);
 
 
 
