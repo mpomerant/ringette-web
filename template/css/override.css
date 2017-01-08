@@ -13,7 +13,7 @@
   border-radius: 10px;
   margin-top: 10px;
   margin-bottom: 10px;
- 
+
 }
 
 .ranking-table-data {
@@ -26,7 +26,7 @@
   }
 
   .stats-title {
-    font-size: 1.1 em;
+    font-size: 1.1em;
   }
 }
 
@@ -67,7 +67,7 @@
 
   .stats-header {
     font-size: 1.3em;
-    font-style: bold;
+    font-weight: bold;
     text-align: center;
     background-color: #f9fafc;
     margin-top: 1.3em;
@@ -97,6 +97,10 @@
   border-width: 1px;
   border-color: grey;
 
- 
+
+}
+#standings-list>li:nth-of-type(14) {
+  border-bottom-style: solid;
+  border-bottom-color: red;
 }
 .ringette-icon {}
