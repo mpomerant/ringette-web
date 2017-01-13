@@ -40,7 +40,7 @@
           <span data-bind="text: $itemContext.index + 1" />
         </div>
         <div class=" ranking-table-image oj-sm-3 oj-flex-item">
-          <span><img class="team-image" height="75" width="75" data-bind="attr: {src: image}"></img><a data-bind="text: team, click: $parent.navigate"></a></span>
+          <span><img class="team-image" data-bind="attr: {src: image, height: $parent.imgSize, width: $parent.imgSize}"></img><a data-bind="text: team, click: $parent.navigate"></a></span>
         </div>
 
         <div class="ranking-table-data oj-sm-3 oj-flex-item">

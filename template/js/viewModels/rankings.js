@@ -54,6 +54,28 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojlistview', 'ojs/ojcollectiont
 
       }
       self.dataSource = ko.observable();
+
+        // create an observable which returns
+        // the current screen max size
+        self.screenRange =
+            oj.ResponsiveKnockoutUtils.createScreenRangeObservable();
+
+        // computed observable to change the label
+        // from 'cal' to 'calendar' to 'daily calendar'
+        // depending on the screen size
+        self.imgSize = ko.computed(function() {
+            var size = 35;
+            var screenRange = self.screenRange();
+
+            if ( oj.ResponsiveUtils.compare(screenRange,
+                    oj.ResponsiveUtils.SCREEN_RANGE.MD) > -1)
+            {
+                size = 75;
+            }
+
+            return size;
+
+        });
       /**
        * Optional ViewModel method invoked when this ViewModel is about to be
        * used for the View transition.  The application can put data fetch logic
