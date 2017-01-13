@@ -5,8 +5,9 @@
       <span data-bind="text: _id"></span>
     </div>
     <div class="oj-flex-item">
+      <span ></span>
       <div class="oj-flex oj-sm-flex-direction-column" data-bind="foreach: teams">
-        <a class="team-panel-text oj-flex-item" data-bind="click: $parents[1].navigate, text: name"></a>
+        <span><a class="team-panel-text oj-flex-item" data-bind="click: $parents[1].navigate, text: name"></a></span>
       </div>
 
     </div>
