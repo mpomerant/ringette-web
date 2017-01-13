@@ -21,6 +21,7 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojmodel', 'ojs/ojchart', 'ojs/o
       self.converter = converterFactory.createConverter(options);
       self.teamId = ko.observable();
       self.teamName = ko.observable('Loading');
+      self.teamImage = ko.observable();
       self.data = ko.observable({});
       self.regularSeason = ko.observableArray([]);
       self.tournament = ko.observableArray([]);
@@ -86,6 +87,7 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojmodel', 'ojs/ojchart', 'ojs/o
             success: function(model, response) {
               self.loaded(false);
               self.teamName(response.team.name);
+              self.teamImage(response.team.image);
               self.data(response);
               self.regularSeason(response.regularSeason);
               self.tournament(response.tournament);
