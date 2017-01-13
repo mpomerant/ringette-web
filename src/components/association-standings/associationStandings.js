@@ -35,6 +35,34 @@ define(['ojs/ojcore', 'knockout', 'ojs/ojlistview', 'ojs/ojcollectiontabledataso
 
         });
 
+        self.recordTxt = ko.computed(function() {
+            var text = "Rec";
+            var screenRange = self.screenRange();
+
+            if ( oj.ResponsiveUtils.compare(screenRange,
+                    oj.ResponsiveUtils.SCREEN_RANGE.MD) > -1)
+            {
+                text = "Record";
+            }
+
+            return text;
+
+        });
+
+        self.pointsTxt = ko.computed(function() {
+            var text = "Pts";
+            var screenRange = self.screenRange();
+
+            if ( oj.ResponsiveUtils.compare(screenRange,
+                    oj.ResponsiveUtils.SCREEN_RANGE.MD) > -1)
+            {
+                text = "Points";
+            }
+
+            return text;
+
+        });
+
       var model = oj.Model.extend({
         idAttribute: 'team',
         parse: function(response) {
