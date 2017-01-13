@@ -20,6 +20,13 @@
   text-align: center;
 }
 
+.ranking-table-image {
+  text-align: start;
+}
+
+.team-image {
+  padding-right: 10px;
+}
 @media screen and (max-width: 415px) {
   .ranking-table-data {
     font-size: 1em;
