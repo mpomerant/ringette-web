@@ -6,17 +6,17 @@
   <h3>Power Rankings</h3>
   <p>These rankings show the relative strength of teams based on all results in regular season and tournament games. The trend line shows results in recent games with <span class="wins">wins</span> <span class="losses">losses</span> and <span class="ties">ties</span>    colour coded.</p>
   <div class="oj-flex" style="flex-wrap: nowrap">
-    <div class="ranking-table-heading oj-sm-2 oj-flex-item">
+    <div class="ranking-table-heading oj-sm-2  oj-md-2 oj-flex-item">
       <span>Rank</span>
     </div>
-    <div class="ranking-table-heading oj-sm-3 oj-flex-item">
+    <div class="ranking-table-heading oj-sm-6 oj-md-3 oj-flex-item">
       <span>Team</span>
     </div>
-    <div class="ranking-table-heading oj-sm-3 oj-flex-item">
+    <div class="ranking-table-heading oj-sm-4 oj-md-3 oj-flex-item">
       <span>Rating</span>
     </div>
 
-    <div class="ranking-table-heading oj-sm-4 oj-flex-item">
+    <div class="ranking-table-heading oj-sm-only-hide oj-md-4 oj-flex-item">
       <span>Trend</span>
     </div>
 
@@ -36,18 +36,18 @@
   <script type="text/html" id="standings_template">
     <li data-bind="attr: {id: team}">
       <div class="oj-flex" style="flex-wrap: nowrap">
-        <div class="ranking-table-data oj-sm-2 oj-flex-item">
+        <div class="ranking-table-data oj-sm-2 oj-md-2 oj-flex-item">
           <span data-bind="text: $itemContext.index + 1" />
         </div>
-        <div class=" ranking-table-image oj-sm-3 oj-flex-item">
+        <div class=" ranking-table-image oj-sm-6 oj-md-3 oj-flex-item">
           <span><img class="team-image" data-bind="attr: {src: image, height: $parent.imgSize, width: $parent.imgSize}"></img><a data-bind="text: team, click: $parent.navigate"></a></span>
         </div>
 
-        <div class="ranking-table-data oj-sm-3 oj-flex-item">
+        <div class="ranking-table-data oj-sm-4 oj-md-3 oj-flex-item">
           <span data-bind="text: rating" />
         </div>
 
-        <div class="oj-sm-4 oj-flex-item">
+        <div class="oj-sm-only-hide oj-md-4 oj-flex-item">
           <div id='pc1' data-bind="ojComponent:{
              component: 'ojPictoChart',
              rowCount:1,
