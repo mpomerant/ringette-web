@@ -7,7 +7,7 @@
   <p>These standings show the approximate ranking of teams based on thier performance in qualifying tournament games. Only round robin tournament games are considered in these rankings. <span class="leader">Association leaders</span> will recieve an automatic
     entry to provincials with remaining spots going to next highest qualifiers</p>
   <div class="oj-flex" style="flex-wrap: nowrap">
-    <div class="oj-sm-3 oj-md-3 oj-flex-item">
+    <div class="oj-sm-5 oj-md-3 oj-flex-item">
       <span class="table-heading">Team</span>
     </div>
     <div class="oj-sm-only-hide oj-md-3 oj-flex-item">
@@ -23,7 +23,7 @@
     </div>
 
 
-    <div class="oj-sm-2 oj-md-1 oj-flex-item">
+    <div class="oj-sm-only-hide oj-md-1 oj-flex-item">
       <span class="table-heading">Points</span>
     </div>
 
@@ -44,8 +44,9 @@
   <script type="text/html" id="standings_template">
     <li data-bind="css: {leader: leader},attr: {id: team}">
       <div class="oj-flex" style="flex-wrap: nowrap">
-        <div class="oj-sm-3 oj-md-3 oj-flex-item">
-          <a data-bind="text: team, click: $parent.navigate" />
+        <div class="oj-sm-5 oj-md-3 oj-flex-item">
+          <span><img class="team-image" data-bind="attr: {src: image, height: $parent.imgSize, width: $parent.imgSize}"></img>
+            <a data-bind="text: team, click: $parent.navigate" /></span>
         </div>
         <div class="oj-sm-only-hide oj-md-3 oj-flex-item">
           <span data-bind="text: association" />
@@ -61,7 +62,7 @@
         </div>
 
         <!-- ko with: qualifying -->
-        <div class="oj-sm-2 oj-md-1 oj-flex-item">
+        <div class="oj-sm-only-hide oj-md-1 oj-flex-item">
           <span data-bind="text: points" />
         </div>
 

@@ -17,6 +17,28 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojknockout', 'promise', 'ojs/oj
         oj.Router.rootInstance.go('/team/' + data.id);
 
       }
+
+        // the current screen max size
+        self.screenRange =
+            oj.ResponsiveKnockoutUtils.createScreenRangeObservable();
+
+        // computed observable to change the label
+        // from 'cal' to 'calendar' to 'daily calendar'
+        // depending on the screen size
+        self.imgSize = ko.computed(function() {
+            var size = 20;
+            var screenRange = self.screenRange();
+
+            if ( oj.ResponsiveUtils.compare(screenRange,
+                    oj.ResponsiveUtils.SCREEN_RANGE.MD) > -1)
+            {
+                size = 50;
+            }
+
+            return size;
+
+        });
+
       var model = oj.Model.extend({
         idAttribute: 'team',
         parse: function(response) {
