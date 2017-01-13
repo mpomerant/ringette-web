@@ -22,7 +22,7 @@ define(['ojs/ojcore', 'knockout', 'ojs/ojlistview', 'ojs/ojcollectiontabledataso
         // from 'cal' to 'calendar' to 'daily calendar'
         // depending on the screen size
         self.imgSize = ko.computed(function() {
-            var size = 35;
+            var size = 20;
             var screenRange = self.screenRange();
 
             if ( oj.ResponsiveUtils.compare(screenRange,
