@@ -34,10 +34,7 @@ define(['ojs/ojcore', 'knockout', 'jquery'],
         context.props.then(function(properties) {
           if (properties.teamName) {
             self.teamName(properties.teamName);
-              $.get(self.colorUrl(),function(data, status){
-                console.log('color: ' + JSON.stringify(data));
-                self.color(data.color);
-              });
+
 
 
           }
@@ -58,6 +55,18 @@ define(['ojs/ojcore', 'knockout', 'jquery'],
        * bindings are applied on this View.
        **/
       self.bindingsApplied = function(context) {
+          context.props.then(function(properties) {
+              if (properties.teamName) {
+                  self.teamName(properties.teamName);
+                  $.get(self.colorUrl(),function(data, status){
+                      console.log('color: ' + JSON.stringify(data));
+                      self.color(data.color);
+                  });
+
+
+              }
+
+          });
 
       }
 
