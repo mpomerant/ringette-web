@@ -22,6 +22,16 @@ app.use(bodyParser.urlencoded({
   extended: false
 }));
 app.use(cookieParser());
+app.get('/color/:teamId', function(req, res, next){
+    var id = req.params.teamId;
+    var file = path.join(__dirname, 'web', 'css','images', 'team', id + '.png' );
+
+
+
+    getColors(files).then(colors => {
+        res.json(colors);
+    });
+});
 app.use('/api', proxy({target: 'http://localhost:3000', changeOrigin: false}));
 app.use(express.static(path.join(__dirname, 'web')));
 
