@@ -12,15 +12,19 @@ define(['ojs/ojcore', 'knockout', 'jquery'],
         return '/color/' + self.teamName();
       });
       self.color = ko.observable("blue");
+
+        var updateColor = function(event){
+            self.teamName(event.detail.value);
+            $.get(self.colorUrl(),function(data, status){
+                console.log('color: ' + JSON.stringify(data));
+                self.color(data.color);
+            });
+        }
+
+
       element.addEventListener('teamName-changed', updateColor);
 
-      var updateColor = function(event){
-          self.teamName(event.detail.value);
-          $.get(self.colorUrl(),function(data, status){
-              console.log('color: ' + JSON.stringify(data));
-              self.color(data.color);
-          });
-      }
+
 
 
       /**
