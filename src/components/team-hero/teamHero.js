@@ -1,6 +1,6 @@
-define(['ojs/ojcore', 'knockout'],
+define(['ojs/ojcore', 'knockout', 'jquery'],
 
-  function(oj, ko) {
+  function(oj, ko, $) {
     /**
      * The view model for the main content view template.
      */
@@ -8,7 +8,10 @@ define(['ojs/ojcore', 'knockout'],
       var self = this;
       var element = context.element;
       self.teamName = ko.observable('web');
-
+      self.colorUrl = ko.computed(function(){
+        return '/color/' + self.teamName();
+      });
+      self.color = ko.observable("blue");
 
 
 
@@ -31,6 +34,12 @@ define(['ojs/ojcore', 'knockout'],
         context.props.then(function(properties) {
           if (properties.teamName) {
             self.teamName(properties.teamName);
+              $.get(self.colorUrl(),function(data, status){
+                console.log('color: ' + JSON.stringify(data));
+                self.color(data.color);
+              });
+
+
           }
 
         });

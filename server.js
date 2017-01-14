@@ -8,7 +8,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-const getColors = require('get-image-colors')
+const getColors = require('get-image-colors');
 
 // config files
 var app = express();
@@ -31,7 +31,11 @@ app.get('/color/:teamId', function(req, res, next){
 
 
     getColors(file).then(colors => {
-        res.json(colors);
+        var hex = "blue"
+        if (colors && colors.length){
+            hex = colors[0].hex();
+        }
+        res.json({color: hex});
     });
 });
 app.use('/api', proxy({target: 'http://localhost:3000', changeOrigin: false}));

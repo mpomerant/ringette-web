@@ -7,6 +7,11 @@
     "stat": {
       "description": "The name to display",
       "type": "string"
+    },
+    "color": {
+      "description": "The color of the card header",
+      "type": "string",
+      "default": "blue"
     }
   }
 
