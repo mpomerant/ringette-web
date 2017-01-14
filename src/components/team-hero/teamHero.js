@@ -8,6 +8,7 @@ define(['ojs/ojcore', 'knockout', 'jquery'],
       var self = this;
       var element = context.element;
       self.teamName = ko.observable('web');
+      self.loaded = ko.observable(false);
       self.colorUrl = ko.computed(function(){
         return '/color/' + self.teamName();
       });
@@ -18,6 +19,7 @@ define(['ojs/ojcore', 'knockout', 'jquery'],
             $.get(self.colorUrl(),function(data, status){
                 console.log('color: ' + JSON.stringify(data));
                 self.color(data.color);
+                self.loaded(true);
             });
         }
 
