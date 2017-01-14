@@ -12,8 +12,15 @@ define(['ojs/ojcore', 'knockout', 'jquery'],
         return '/color/' + self.teamName();
       });
       self.color = ko.observable("blue");
+      element.addEventListener('teamName-changed', updateColor);
 
-
+      var updateColor = function(event){
+          self.teamName(event.detail.value);
+          $.get(self.colorUrl(),function(data, status){
+              console.log('color: ' + JSON.stringify(data));
+              self.color(data.color);
+          });
+      }
 
 
       /**
@@ -50,23 +57,13 @@ define(['ojs/ojcore', 'knockout', 'jquery'],
 
       }
 
+
       /**
        * This optional method may be implemented on the ViewModel and will be invoked after the
        * bindings are applied on this View.
        **/
       self.bindingsApplied = function(context) {
-          context.props.then(function(properties) {
-              if (properties.teamName) {
-                  self.teamName(properties.teamName);
-                  $.get(self.colorUrl(),function(data, status){
-                      console.log('color: ' + JSON.stringify(data));
-                      self.color(data.color);
-                  });
 
-
-              }
-
-          });
 
       }
 
@@ -75,7 +72,7 @@ define(['ojs/ojcore', 'knockout', 'jquery'],
        * composite component is being disposed.
        **/
       self.dispose = function(element) {
-
+          element.removeEventListener('teamName-changed', updateColor);
       }
 
 
