@@ -35,6 +35,7 @@
     <div class="stats-header">
         <span>Tournament</span>
     </div>
+    <stat-graph name="Opposition Win %" data-bind="attr: {stat1: team1Object().t_oppWinPct, stat2: team2Object().t_oppWinPct}"></stat-graph>
     <stat-graph name="Goals Per Game" data-bind="attr: {stat1: team1Object().t_gfpg, stat2: team2Object().t_gfpg}"></stat-graph>
     <stat-graph name="Goals Against Per Game" data-bind="attr: {stat1: team1Object().t_gapg, stat2: team2Object().t_gapg}"></stat-graph>
     <stat-graph name="Goals For" data-bind="attr: {stat1: team1Object().t_for, stat2: team2Object().t_for}"></stat-graph>
@@ -42,6 +43,7 @@
     <div class="stats-header">
         <span>Regular Season</span>
     </div>
+    <stat-graph name="Opposition Win %" data-bind="attr: {stat1: team1Object().rs_oppWinPct, stat2: team2Object().rs_oppWinPct}"></stat-graph>
     <stat-graph name="Goals Per Game" data-bind="attr: {stat1: team1Object().rs_gfpg, stat2: team2Object().rs_gfpg}"></stat-graph>
     <stat-graph name="Goals Against Per Game" data-bind="attr: {stat1: team1Object().rs_gapg, stat2: team2Object().rs_gapg}"></stat-graph>
     <stat-graph name="Goals For" data-bind="attr: {stat1: team1Object().rs_for, stat2: team2Object().rs_for}"></stat-graph>

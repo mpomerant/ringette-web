@@ -53,7 +53,8 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojmodel', 'ojs/ojknockout', 'oj
                             obj.t_gapg = (response.tournamentRecord.against / response.tournamentRecord.games).toFixed(2);
                             obj.total_gfpg = ((obj.rs_for + obj.t_for) / (response.tournamentRecord.games + response.regularSeasonRecord.games)).toFixed(2);
                             obj.total_gapg = ((obj.rs_against + obj.t_against)/ (response.tournamentRecord.games + response.regularSeasonRecord.games)).toFixed(2);
-                            
+                            obj.rs_oppWinPct = response.regularSeasonRecord.oppWinPct;
+                            obj.t_oppWinPct = response.tournamentRecord.oppWinPct;
                             self.team1Object(obj);
                             self.team1Object.valueHasMutated();
                             self.loaded1(true);
@@ -87,7 +88,8 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojmodel', 'ojs/ojknockout', 'oj
                             obj.t_gapg = (response.tournamentRecord.against / response.tournamentRecord.games).toFixed(2);
                             obj.total_gfpg = ((obj.rs_for + obj.t_for) / (response.tournamentRecord.games + response.regularSeasonRecord.games)).toFixed(2);
                             obj.total_gapg = ((obj.rs_against + obj.t_against)/ (response.tournamentRecord.games + response.regularSeasonRecord.games)).toFixed(2);
-                            
+                            obj.rs_oppWinPct = response.regularSeasonRecord.oppWinPct;
+                            obj.t_oppWinPct = response.tournamentRecord.oppWinPct;
                             self.team2Object(obj);
                             self.team2Object.valueHasMutated();
                             self.loaded2(true);
