@@ -27,8 +27,12 @@
       <span class="table-heading">Points</span>
     </div>
 
-    <div class="oj-sm-2 oj-md-2 oj-flex-item">
+    <div class="oj-sm-1 oj-md-1 oj-flex-item">
       <span class="table-heading">Win %</span>
+    </div>
+
+    <div class="oj-sm-1 oj-md-1 oj-flex-item">
+      <span class="table-heading">Opp %</span>
     </div>
 
 
@@ -66,8 +70,18 @@
           <span data-bind="text: points" />
         </div>
 
-        <div class="oj-sm-2 oj-md-2  oj-flex-item">
+        <div class="oj-sm-1 oj-md-1  oj-flex-item">
           <span data-bind="text: winPct" />
+        </div>
+
+
+        <!-- /ko -->
+
+        <!-- ko with: tournamentRecord -->
+
+
+        <div class="oj-sm-1 oj-md-1  oj-flex-item">
+          <span data-bind="text: oppWinPct" />
         </div>
 
 
