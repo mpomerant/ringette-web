@@ -12,46 +12,7 @@
       </div>
     </div>
     <div class="oj-flex oj-sm-justify-content-space-between ">
-      <div class=" hero-stats  oj-flex-item oj-sm-12 oj-md-6">
-        <span class="hero-stat-title">Regular Season</span>
-        <!-- ko with: $props.data.regularSeasonRecord -->
 
-
-        <div class="oj-flex oj-flex-items-pad">
-          <div class="oj-flex-item oj-sm-6">
-            <team-data-card title='Record' stat={{record}} color="[[$parent.color]]"></team-data-card>
-
-
-          </div>
-          <div class="oj-flex-item oj-sm-6">
-            <team-data-card title='Win %' stat={{pct}} color="[[$parent.color]]"></team-data-card>
-
-          </div>
-        </div>
-        <div class="oj-flex oj-flex-items-pad">
-          <div class="oj-flex-item oj-sm-6">
-            <team-data-card title='Opp. Record' stat={{oppRecord}} color="[[$parent.color]]"></team-data-card>
-
-
-          </div>
-          <div class="oj-flex-item oj-sm-6">
-            <team-data-card title='Opp. Win %' stat={{oppWinPct}} color="[[$parent.color]]"></team-data-card>
-
-          </div>
-        </div>
-        <div class="oj-flex oj-flex-items-pad">
-          <div class="oj-flex-item oj-sm-6">
-            <team-data-card title='Goals For' stat={{$data.for}} color="[[$parent.color]]"></team-data-card>
-
-
-          </div>
-          <div class="oj-flex-item oj-sm-6">
-            <team-data-card title='Goals Against' stat={{against}} color="[[$parent.color]]"></team-data-card>
-
-          </div>
-        </div>
-        <!-- /ko -->
-      </div>
       <div class="hero-container hero-stats oj-flex-item oj-sm-12 oj-md-6">
         <span class="hero-stat-title">Tournament</span>
         <!-- ko with: $props.data.tournamentRecord -->
@@ -90,6 +51,47 @@
           </div>
           <div class="oj-flex-item oj-sm-6">
             <team-data-card title='Goals Against' stat={{$data.against}} color="[[$parent.color]]"></team-data-card>
+
+          </div>
+        </div>
+        <!-- /ko -->
+      </div>
+
+      <div class=" hero-stats  oj-flex-item oj-sm-12 oj-md-6">
+        <span class="hero-stat-title">Regular Season</span>
+        <!-- ko with: $props.data.regularSeasonRecord -->
+
+
+        <div class="oj-flex oj-flex-items-pad">
+          <div class="oj-flex-item oj-sm-6">
+            <team-data-card title='Record' stat={{record}} color="[[$parent.color]]"></team-data-card>
+
+
+          </div>
+          <div class="oj-flex-item oj-sm-6">
+            <team-data-card title='Win %' stat={{pct}} color="[[$parent.color]]"></team-data-card>
+
+          </div>
+        </div>
+        <div class="oj-flex oj-flex-items-pad">
+          <div class="oj-flex-item oj-sm-6">
+            <team-data-card title='Opp. Record' stat={{oppRecord}} color="[[$parent.color]]"></team-data-card>
+
+
+          </div>
+          <div class="oj-flex-item oj-sm-6">
+            <team-data-card title='Opp. Win %' stat={{oppWinPct}} color="[[$parent.color]]"></team-data-card>
+
+          </div>
+        </div>
+        <div class="oj-flex oj-flex-items-pad">
+          <div class="oj-flex-item oj-sm-6">
+            <team-data-card title='Goals For' stat={{$data.for}} color="[[$parent.color]]"></team-data-card>
+
+
+          </div>
+          <div class="oj-flex-item oj-sm-6">
+            <team-data-card title='Goals Against' stat={{against}} color="[[$parent.color]]"></team-data-card>
 
           </div>
         </div>
