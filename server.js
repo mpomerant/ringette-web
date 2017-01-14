@@ -24,11 +24,13 @@ app.use(bodyParser.urlencoded({
 app.use(cookieParser());
 app.get('/color/:teamId', function(req, res, next){
     var id = req.params.teamId;
+    console.log('ID: ' + id);
     var file = path.join(__dirname, 'web', 'css','images', 'team', id + '.png' );
+    console.log('file: ' + file);
 
 
 
-    getColors(files).then(colors => {
+    getColors(file).then(colors => {
         res.json(colors);
     });
 });
