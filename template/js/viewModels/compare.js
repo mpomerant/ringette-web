@@ -30,12 +30,12 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojmodel', 'ojs/ojknockout', 'oj
 
             });
 
-            self.color = ko.observable("blue");
+            self.colour = ko.observable("blue");
             self.colorUrl1 = ko.computed(function(){
                 return '/color/' + self.team1Name();
             });
 
-            self.color2 = ko.observable("blue");
+            self.colour2 = ko.observable("blue");
             self.colorUrl2 = ko.computed(function(){
                 return '/color/' + self.team2Name();
             });
@@ -77,7 +77,7 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojmodel', 'ojs/ojknockout', 'oj
                             self.team1Object(obj);
                             self.team1Object.valueHasMutated();
                             updateColor(self.colorUrl1()).then(function(colour){
-                                self.color(colour);
+                                self.colour(colour);
                                 self.loaded1(true);
                             })
 
@@ -117,7 +117,7 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojmodel', 'ojs/ojknockout', 'oj
                             self.team2Object.valueHasMutated();
 
                             updateColor(self.colorUrl1()).then(function(colour){
-                                self.color2(colour);
+                                self.colour2(colour);
                                 self.loaded2(true);
                             })
 
