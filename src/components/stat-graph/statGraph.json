@@ -11,7 +11,19 @@
     "stat2": {
       "description": "the second stat",
       "type": "number"
+    },
+    "colour1": {
+      "description": "the color of the first bar"
+      "type": "string",
+      "value": "#29ba1c"
+    },
+    "colour2": {
+      "description": "the color of the second bar"
+      "type": "string",
+      "value": "#267db3"
     }
   }
+
+
 
 }

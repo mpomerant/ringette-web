@@ -12,8 +12,8 @@
 <div class="oj-flex">
     <div class="oj-flex-item">
         <svg data-bind="attr: {width: width, height: 40 }">
-            <rect data-bind="attr: {x: team1X, width: team1Width }" y="0" height="10" style="fill:#29ba1c;" />
-            <rect data-bind="attr: {x: team2X, width: team2Width }" y="0" height="10" style="fill:#267db3;" />
+            <rect data-bind="attr: {x: team1X, width: team1Width }, style: {fill: $props.colour1}" y="0" height="10" />
+            <rect data-bind="attr: {x: team2X, width: team2Width }, style: {fill: $props.colour2}" y="0" height="10" />
         </svg>
     </div>
 </div>
