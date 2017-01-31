@@ -19,34 +19,34 @@
     </div>
     <!-- ko if: ready -->
     <div class="oj-flex">
-        <div class="oj-flex-item oj-sm-6 team1">
+        <div class="oj-flex-item oj-sm-6 team1" data-bind="style: {backgroundColor: colour}">
             <span data-bind="text: team1Name"></span>
         </div>
-        <div class="oj-flex-item oj-sm-6 team2">
+        <div class="oj-flex-item oj-sm-6 team2" data-bind="style: {backgroundColor: colour2}">
             <span data-bind="text: team2Name"></span>
         </div>
     </div>
     <div class="stats-header">
         <span>Total</span>
     </div>
-    <stat-graph name="Rating" data-bind="attr: {stat1: team1Object().rating, stat2: team2Object().rating}"></stat-graph>
-    <stat-graph name="Goals Per Game" data-bind="attr: {stat1: team1Object().total_gfpg, stat2: team2Object().total_gfpg}"></stat-graph>
-    <stat-graph name="Goals Against Per Game" data-bind="attr: {stat1: team1Object().total_gapg, stat2: team2Object().total_gapg}"></stat-graph>
+    <stat-graph name="Rating" data-bind="attr: {stat1: team1Object().rating, stat2: team2Object().rating, colour1: colour, colour2: colour2}"></stat-graph>
+    <stat-graph name="Goals Per Game" data-bind="attr: {stat1: team1Object().total_gfpg, stat2: team2Object().total_gfpg, colour1: colour, colour2: colour2}"></stat-graph>
+    <stat-graph name="Goals Against Per Game" data-bind="attr: {stat1: team1Object().total_gapg, stat2: team2Object().total_gapg, colour1: colour, colour2: colour2}"></stat-graph>
     <div class="stats-header">
         <span>Tournament</span>
     </div>
-    <stat-graph name="Opposition Win %" data-bind="attr: {stat1: team1Object().t_oppWinPct, stat2: team2Object().t_oppWinPct}"></stat-graph>
-    <stat-graph name="Goals Per Game" data-bind="attr: {stat1: team1Object().t_gfpg, stat2: team2Object().t_gfpg}"></stat-graph>
-    <stat-graph name="Goals Against Per Game" data-bind="attr: {stat1: team1Object().t_gapg, stat2: team2Object().t_gapg}"></stat-graph>
-    <stat-graph name="Goals For" data-bind="attr: {stat1: team1Object().t_for, stat2: team2Object().t_for}"></stat-graph>
-    <stat-graph name="Goals Against" data-bind="attr: {stat1: team1Object().t_against, stat2: team2Object().t_against}"></stat-graph>
+    <stat-graph name="Opposition Win %" data-bind="attr: {stat1: team1Object().t_oppWinPct, stat2: team2Object().t_oppWinPct, colour1: colour, colour2: colour2}"></stat-graph>
+    <stat-graph name="Goals Per Game" data-bind="attr: {stat1: team1Object().t_gfpg, stat2: team2Object().t_gfpg, colour1: colour, colour2: colour2}"></stat-graph>
+    <stat-graph name="Goals Against Per Game" data-bind="attr: {stat1: team1Object().t_gapg, stat2: team2Object().t_gapg, colour1: colour, colour2: colour2}"></stat-graph>
+    <stat-graph name="Goals For" data-bind="attr: {stat1: team1Object().t_for, stat2: team2Object().t_for, colour1: colour, colour2: colour2}"></stat-graph>
+    <stat-graph name="Goals Against" data-bind="attr: {stat1: team1Object().t_against, stat2: team2Object().t_against, colour1: colour, colour2: colour2}"></stat-graph>
     <div class="stats-header">
         <span>Regular Season</span>
     </div>
-    <stat-graph name="Opposition Win %" data-bind="attr: {stat1: team1Object().rs_oppWinPct, stat2: team2Object().rs_oppWinPct}"></stat-graph>
-    <stat-graph name="Goals Per Game" data-bind="attr: {stat1: team1Object().rs_gfpg, stat2: team2Object().rs_gfpg}"></stat-graph>
-    <stat-graph name="Goals Against Per Game" data-bind="attr: {stat1: team1Object().rs_gapg, stat2: team2Object().rs_gapg}"></stat-graph>
-    <stat-graph name="Goals For" data-bind="attr: {stat1: team1Object().rs_for, stat2: team2Object().rs_for}"></stat-graph>
-    <stat-graph name="Goals Against" data-bind="attr: {stat1: team1Object().rs_against, stat2: team2Object().rs_against}"></stat-graph>
+    <stat-graph name="Opposition Win %" data-bind="attr: {stat1: team1Object().rs_oppWinPct, stat2: team2Object().rs_oppWinPct, colour1: colour, colour2: colour2}"></stat-graph>
+    <stat-graph name="Goals Per Game" data-bind="attr: {stat1: team1Object().rs_gfpg, stat2: team2Object().rs_gfpg, colour1: colour, colour2: colour2}"></stat-graph>
+    <stat-graph name="Goals Against Per Game" data-bind="attr: {stat1: team1Object().rs_gapg, stat2: team2Object().rs_gapg, colour1: colour, colour2: colour2}"></stat-graph>
+    <stat-graph name="Goals For" data-bind="attr: {stat1: team1Object().rs_for, stat2: team2Object().rs_for, colour1: colour, colour2: colour2}"></stat-graph>
+    <stat-graph name="Goals Against" data-bind="attr: {stat1: team1Object().rs_against, stat2: team2Object().rs_against, colour1: colour, colour2: colour2}"></stat-graph>
     <!-- /ko -->
 </div>
