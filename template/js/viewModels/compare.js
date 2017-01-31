@@ -41,7 +41,7 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojmodel', 'ojs/ojknockout', 'oj
             });
 
             var updateColor = function(url){
-                return new Promise(function(response, reject){
+                return new Promise(function(resolve, reject){
                     $.get(url,function(data, status){
                         resolve(data.color);
                     });
