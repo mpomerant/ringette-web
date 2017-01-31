@@ -30,9 +30,28 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojmodel', 'ojs/ojknockout', 'oj
 
             });
 
+            self.color = ko.observable("blue");
+            self.colorUrl1 = ko.computed(function(){
+                return '/color/' + self.team1Name();
+            });
+
+            self.color2 = ko.observable("blue");
+            self.colorUrl2 = ko.computed(function(){
+                return '/color/' + self.team2Name();
+            });
+
+            var updateColor = function(url){
+                return new Promise(function(response, reject){
+                    $.get(url,function(data, status){
+                        resolve(data.color);
+                    });
+                })
+
+            }
+
             self.team1Changed = function(event, data) {
                 if (data.option == "value") {
-                  self.loaded1(false);
+                    self.loaded1(false);
                     console.log('data: ' + data.value);
                     console.log(self.elo()[data.value].rating);
                     var myTeam = new teamModel();
@@ -57,7 +76,11 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojmodel', 'ojs/ojknockout', 'oj
                             obj.t_oppWinPct = response.tournamentRecord.oppWinPct;
                             self.team1Object(obj);
                             self.team1Object.valueHasMutated();
-                            self.loaded1(true);
+                            updateColor(self.colorUrl1()).then(function(colour){
+                                self.color(colour);
+                                self.loaded1(true);
+                            })
+
 
                         }
                     })
@@ -92,7 +115,11 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojmodel', 'ojs/ojknockout', 'oj
                             obj.t_oppWinPct = response.tournamentRecord.oppWinPct;
                             self.team2Object(obj);
                             self.team2Object.valueHasMutated();
-                            self.loaded2(true);
+
+                            updateColor(self.colorUrl1()).then(function(colour){
+                                self.color2(colour);
+                                self.loaded2(true);
+                            })
 
                         }
                     })
