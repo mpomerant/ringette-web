@@ -116,7 +116,7 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojmodel', 'ojs/ojknockout', 'oj
                             self.team2Object(obj);
                             self.team2Object.valueHasMutated();
 
-                            updateColor(self.colorUrl1()).then(function(colour){
+                            updateColor(self.colorUrl2()).then(function(colour){
                                 self.colour2(colour);
                                 self.loaded2(true);
                             })
