@@ -1,0 +1,142 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.14.1
+ignore: {}
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  'npm:debug:20170905':
+    - gulp-connect > connect > body-parser > debug:
+        patched: '2020-03-19T20:43:41.061Z'
+    - gulp-connect > connect > compression > debug:
+        patched: '2020-03-19T20:43:41.061Z'
+    - gulp-connect > connect > connect-timeout > debug:
+        patched: '2020-03-19T20:43:41.061Z'
+    - gulp-connect > connect > express-session > debug:
+        patched: '2020-03-19T20:43:41.061Z'
+    - gulp-connect > connect > method-override > debug:
+        patched: '2020-03-19T20:43:41.061Z'
+    - gulp-connect > connect > morgan > debug:
+        patched: '2020-03-19T20:43:41.061Z'
+    - gulp-connect > connect > serve-index > debug:
+        patched: '2020-03-19T20:43:41.061Z'
+    - gulp-connect > tiny-lr > body-parser > debug:
+        patched: '2020-03-19T20:43:41.061Z'
+    - gulp-connect > connect > serve-static > send > debug:
+        patched: '2020-03-19T20:43:41.061Z'
+    - gulp-watch > chokidar > fsevents > node-pre-gyp > tar-pack > debug:
+        patched: '2020-03-19T20:43:41.061Z'
+    - gulp-eslint > eslint > debug:
+        patched: '2020-03-19T20:43:41.061Z'
+    - gulp-sourcemaps > debug-fabulous > debug:
+        patched: '2020-03-19T20:43:41.061Z'
+    - gulp-sass > node-sass > node-gyp > path-array > array-index > debug:
+        patched: '2020-03-19T20:43:41.061Z'
+  'npm:extend:20180424':
+    - gulp > liftoff > extend:
+        patched: '2020-03-19T20:43:41.061Z'
+    - gulp-sass > node-sass > request > extend:
+        patched: '2020-03-19T20:43:41.061Z'
+    - gulp-sass > node-sass > node-gyp > request > extend:
+        patched: '2020-03-19T20:43:41.061Z'
+    - gulp-watch > chokidar > fsevents > node-pre-gyp > request > extend:
+        patched: '2020-03-19T20:43:41.061Z'
+  'npm:hoek:20180212':
+    - gulp-sass > node-sass > request > hawk > hoek:
+        patched: '2020-03-19T20:43:41.061Z'
+    - gulp-sass > node-sass > request > hawk > boom > hoek:
+        patched: '2020-03-19T20:43:41.061Z'
+    - gulp-sass > node-sass > request > hawk > sntp > hoek:
+        patched: '2020-03-19T20:43:41.061Z'
+    - gulp-sass > node-sass > node-gyp > request > hawk > hoek:
+        patched: '2020-03-19T20:43:41.061Z'
+    - gulp-sass > node-sass > request > hawk > cryptiles > boom > hoek:
+        patched: '2020-03-19T20:43:41.061Z'
+    - gulp-sass > node-sass > node-gyp > request > hawk > boom > hoek:
+        patched: '2020-03-19T20:43:41.061Z'
+    - gulp-sass > node-sass > node-gyp > request > hawk > sntp > hoek:
+        patched: '2020-03-19T20:43:41.061Z'
+    - gulp-watch > chokidar > fsevents > node-pre-gyp > request > hawk > hoek:
+        patched: '2020-03-19T20:43:41.061Z'
+    - gulp-sass > node-sass > node-gyp > request > hawk > cryptiles > boom > hoek:
+        patched: '2020-03-19T20:43:41.061Z'
+    - gulp-watch > chokidar > fsevents > node-pre-gyp > request > hawk > boom > hoek:
+        patched: '2020-03-19T20:43:41.061Z'
+    - gulp-watch > chokidar > fsevents > node-pre-gyp > request > hawk > sntp > hoek:
+        patched: '2020-03-19T20:43:41.061Z'
+    - gulp-watch > chokidar > fsevents > node-pre-gyp > request > hawk > cryptiles > boom > hoek:
+        patched: '2020-03-19T20:43:41.061Z'
+  'npm:mime:20170907':
+    - gulp-connect > connect > serve-static > send > mime:
+        patched: '2020-03-19T20:43:41.061Z'
+  'npm:minimatch:20160620':
+    - gulp > vinyl-fs > glob-stream > minimatch:
+        patched: '2020-03-19T20:43:41.061Z'
+    - gulp > vinyl-fs > glob-watcher > gaze > globule > minimatch:
+        patched: '2020-03-19T20:43:41.061Z'
+    - gulp > vinyl-fs > glob-watcher > gaze > globule > glob > minimatch:
+        patched: '2020-03-19T20:43:41.061Z'
+  'npm:ms:20170412':
+    - gulp-connect > connect > connect-timeout > ms:
+        patched: '2020-03-19T20:43:41.061Z'
+    - gulp-connect > connect > serve-favicon > ms:
+        patched: '2020-03-19T20:43:41.061Z'
+    - gulp-connect > connect > body-parser > debug > ms:
+        patched: '2020-03-19T20:43:41.061Z'
+    - gulp-connect > connect > compression > debug > ms:
+        patched: '2020-03-19T20:43:41.061Z'
+    - gulp-connect > connect > connect-timeout > debug > ms:
+        patched: '2020-03-19T20:43:41.061Z'
+    - gulp-connect > connect > express-session > debug > ms:
+        patched: '2020-03-19T20:43:41.061Z'
+    - gulp-connect > connect > method-override > debug > ms:
+        patched: '2020-03-19T20:43:41.061Z'
+    - gulp-connect > connect > morgan > debug > ms:
+        patched: '2020-03-19T20:43:41.061Z'
+    - gulp-connect > connect > serve-index > debug > ms:
+        patched: '2020-03-19T20:43:41.061Z'
+    - gulp-connect > tiny-lr > body-parser > debug > ms:
+        patched: '2020-03-19T20:43:41.061Z'
+    - gulp-connect > connect > serve-static > send > ms:
+        patched: '2020-03-19T20:43:41.061Z'
+    - gulp-connect > connect > serve-static > send > debug > ms:
+        patched: '2020-03-19T20:43:41.061Z'
+    - gulp-watch > chokidar > fsevents > node-pre-gyp > tar-pack > debug > ms:
+        patched: '2020-03-19T20:43:41.061Z'
+    - gulp-eslint > eslint > debug > ms:
+        patched: '2020-03-19T20:43:41.061Z'
+    - gulp-sourcemaps > debug-fabulous > debug > ms:
+        patched: '2020-03-19T20:43:41.061Z'
+    - gulp-sass > node-sass > node-gyp > path-array > array-index > debug > ms:
+        patched: '2020-03-19T20:43:41.061Z'
+  'npm:negotiator:20160616':
+    - gulp-connect > connect > compression > accepts > negotiator:
+        patched: '2020-03-19T20:43:41.061Z'
+    - gulp-connect > connect > serve-index > accepts > negotiator:
+        patched: '2020-03-19T20:43:41.061Z'
+  'npm:qs:20170213':
+    - gulp-sass > node-sass > request > qs:
+        patched: '2020-03-19T20:43:41.061Z'
+    - gulp-sass > node-sass > node-gyp > request > qs:
+        patched: '2020-03-19T20:43:41.061Z'
+    - gulp-watch > chokidar > fsevents > node-pre-gyp > request > qs:
+        patched: '2020-03-19T20:43:41.061Z'
+  'npm:stringstream:20180511':
+    - gulp-sass > node-sass > request > stringstream:
+        patched: '2020-03-19T20:43:41.061Z'
+    - gulp-sass > node-sass > node-gyp > request > stringstream:
+        patched: '2020-03-19T20:43:41.061Z'
+    - gulp-watch > chokidar > fsevents > node-pre-gyp > request > stringstream:
+        patched: '2020-03-19T20:43:41.061Z'
+  'npm:tough-cookie:20170905':
+    - gulp-sass > node-sass > request > tough-cookie:
+        patched: '2020-03-19T20:43:41.061Z'
+    - gulp-sass > node-sass > node-gyp > request > tough-cookie:
+        patched: '2020-03-19T20:43:41.061Z'
+    - gulp-watch > chokidar > fsevents > node-pre-gyp > request > tough-cookie:
+        patched: '2020-03-19T20:43:41.061Z'
+  'npm:tunnel-agent:20170305':
+    - gulp-sass > node-sass > request > tunnel-agent:
+        patched: '2020-03-19T20:43:41.061Z'
+    - gulp-sass > node-sass > node-gyp > request > tunnel-agent:
+        patched: '2020-03-19T20:43:41.061Z'
+    - gulp-watch > chokidar > fsevents > node-pre-gyp > request > tunnel-agent:
+        patched: '2020-03-19T20:43:41.061Z'
