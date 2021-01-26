@@ -18,7 +18,7 @@
     "gulp-git": "^1.11.3",
     "gulp-header": "^1.8.8",
     "gulp-requirejs-optimize": "^1.2.0",
-    "gulp-sass": "^2.3.2",
+    "gulp-sass": "^3.0.0",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-watch": "^4.3.9",
     "http-proxy-middleware": "^0.17.2",
