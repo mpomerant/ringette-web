@@ -24,7 +24,7 @@
     "http-proxy-middleware": "^0.17.2",
     "proxy-middleware": "^0.15.0",
     "sanitize-filename": "^1.6.1",
-    "yargs": "^6.0.0"
+    "yargs": "^10.0.0"
   },
   "scripts": {
     "start": "nohup nodemon bin/www > stdout.txt 2> stderr.txt &",
