@@ -24,11 +24,14 @@
     "http-proxy-middleware": "^0.17.2",
     "proxy-middleware": "^0.15.0",
     "sanitize-filename": "^1.6.1",
-    "yargs": "^6.0.0"
+    "yargs": "^6.0.0",
+    "@snyk/protect": "latest"
   },
   "scripts": {
     "start": "nohup nodemon bin/www > stdout.txt 2> stderr.txt &",
-    "build": "gulp copy"
+    "build": "gulp copy",
+    "prepare": "yarn run snyk-protect",
+    "snyk-protect": "snyk-protect"
   },
   "engines": {
     "node": ">=0.10.0"
@@ -59,5 +62,6 @@
   "private": true,
   "devDependencies": {
     "gulp-replace": "^0.5.4"
-  }
+  },
+  "snyk": true
 }
